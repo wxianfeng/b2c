@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Rails3Base::Application.load_tasks
+FashionSprout::Application.load_tasks
