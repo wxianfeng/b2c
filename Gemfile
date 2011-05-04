@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'mysql', '2.8.1'
+gem 'mysql2', '0.2.6'
 gem 'rails', '3.0.6'
 gem 'jquery-rails', '0.2.7'
 gem 'configatron', '2.7.2'
