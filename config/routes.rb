@@ -1,11 +1,9 @@
 FashionSprout::Application.routes.draw do
-  
-  resources :categories
 
-  resources :products  
+  resources :products
 
   devise_for :users,
-      :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
+    :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
   as :user do
     get 'login', :to => 'devise/sessions#new', :as => 'new_user_session'
@@ -14,4 +12,8 @@ FashionSprout::Application.routes.draw do
   end
 
   root :to => 'dashboard#index'
+  
+  namespace :admin do
+    resources :categories
+  end
 end

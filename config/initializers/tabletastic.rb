@@ -4,5 +4,5 @@ Tabletastic.default_table_html = {
 
 
 Tabletastic.default_table_block = lambda do |table|
-  table.data :actions => :all
+  table.data :actions => :all 
 end
