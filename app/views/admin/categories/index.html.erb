@@ -1,18 +1,20 @@
 <% title 'Listing categories' %>
 
 <% unless collection.all.blank? %>
-<% # tabletastic namespace route %>
-<%# see https://github.com/jgdavey/tabletastic/issues/9 %>
-  <%= table_for collection  %>
-<%= paginate(collection) %>
+  <% # tabletastic namespace route %>
+  <%# see https://github.com/jgdavey/tabletastic/issues/9 %>
+  <%= table_for collection do |t| %>
+    <%= t.data :action_prefix=>"admin" , :actions=>:all %>
+  <% end %>
+  <%= paginate(collection) %>
 <% else %>
-<p>Now it's time to create some data here. To create new entry, please use the button below.</p>
-<br /><br />
+  <p>Now it's time to create some data here. To create new entry, please use the button below.</p>
+  <br /><br />
 <% end %>
 
 <br />
 
 <p>
-<%= link_to 'New Category', new_admin_category_path, :class => 'button' %>
+  <%= link_to 'New Category', new_admin_category_path, :class => 'button' %>
 </p>
 

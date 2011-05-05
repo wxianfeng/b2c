@@ -1,4 +1,4 @@
-<%= semantic_form_for(resource, :validate => true) do |form| %>
+<%= semantic_form_for([:admin,resource], :validate => true) do |form| %>
   <%= form.inputs do %>
     <%= form.input :name %>
     <%= form.input :category_id %>
@@ -6,5 +6,5 @@
     <%= form.input :show_order %>
   <% end %>
 
-  <%= form.buttons %> or <%= link_to 'cancel', resource %>
+  <%= form.buttons %> or <%= link_to 'cancel', [:admin,resource] %>
 <% end %>
