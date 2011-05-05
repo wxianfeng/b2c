@@ -1,0 +1,6 @@
+<% title "upload product" %>
+
+<%= semantic_form_for @product do |f| %>
+<%= f.input :category_id , :as=>"select" %>
+<%= f.input :name %>
+<% end %>

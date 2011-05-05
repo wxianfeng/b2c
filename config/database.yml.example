@@ -1,32 +1,42 @@
-# sqlite
+# MySQL.  Versions 4.1 and 5.0 are recommended.
 #
-defaults_developmet: &defaults_developmet
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-
+# Install the MySQL driver:
+#   gem install mysql2
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
-  database: db/development.sqlite3
-  <<: *defaults_developmet
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: fashionsprout_development
+  pool: 5
+  username: root
+  password: root
+  host: localhost
+  socket: /tmp/mysql.sock
 
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
 test:
-  database: db/test<%= ENV['TEST_ENV_NUMBER'] %>.sqlite3
-  <<: *defaults_developmet
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: fashionsprout_test
+  pool: 5
+  username: root
+  password: root
+  host: localhost
+  socket: /tmp/mysql.sock
 
-
-## mysql@locahost
-##
-#defaults_developmet: &defaults_developmet
-#  adapter: mysql
-#  encoding: utf8
-#  host: localhost
-#  username: root
-#  password:
-#
-#development:
-#  database: application_dev
-#  <<: *defaults_developmet
-#
-#test:
-#  database: application_test<%= ENV['TEST_ENV_NUMBER'] %>
-#  <<: *defaults_developmet
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: fashionsprout_production
+  pool: 5
+  username: root
+  password: root
+  host: localhost
+  socket: /tmp/mysql.sock
