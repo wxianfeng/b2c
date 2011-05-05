@@ -1,12 +1,17 @@
 <% title "upload product" %>
 
 <%= semantic_form_for @product , :validate => true  do |f| %>
-<%= f.input :category_id ,  :as=>"select" ,  :collection=>Category.all , :required => true %>
+<%= f.input :category_id ,  :as=>"select" ,  :collection=> Category.all , :required => true %>
 <%= f.input :name , :required => true %>
 <%= f.input :description , :required => true %>
 <p>
   <strong>tags:</strong>
   <%= text_field_tag :tags %> (split by ,)
 </p>
-<%= f.buttons %>
+
+<%= f.buttons do %>
+  <%= f.commit_button "Create" %>
+  <%= f.cancel_link    %> 
+<% end %>
+
 <% end %>

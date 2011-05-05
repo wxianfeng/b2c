@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include CustomFormtastic
   protect_from_forgery
   layout 'application'
 
