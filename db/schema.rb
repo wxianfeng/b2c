@@ -10,7 +10,57 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122224015) do
+ActiveRecord::Schema.define(:version => 20110505025638) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "category_id"
+    t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "categories", ["category_id"], :name => "index_categories_on_category_id"
+
+  create_table "prices", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "quantity_min"
+    t.integer  "quantity_max"
+    t.decimal  "seller_price",  :precision => 10, :scale => 2
+    t.decimal  "website_price", :precision => 10, :scale => 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prices", ["product_id"], :name => "index_prices_on_product_id"
+
+  create_table "product_tags", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_tags", ["product_id"], :name => "index_product_tags_on_product_id"
+  add_index "product_tags", ["tag_id"], :name => "index_product_tags_on_tag_id"
+
+  create_table "products", :force => true do |t|
+    t.integer  "seller_id"
+    t.integer  "category_id"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["category_id"], :name => "index_products_on_category_id"
+  add_index "products", ["seller_id"], :name => "index_products_on_seller_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name",       :limit => 60
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_identities", :force => true do |t|
     t.integer  "user_id"
