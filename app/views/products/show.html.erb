@@ -1,0 +1,11 @@
+<% title @product.name  %>
+
+<table>
+  <tbody>
+    <tr><td>category:</td><td><%= @product.category.name %></td></tr>
+    <tr><td>description:</td><td><%= @product.description %></td></tr>
+    <tr><td>tags:</td><td><%= @product.tags.map(&:name).join(",") %></td></tr>
+  </tbody>
+</table>
+
+<%= link_to "NEW" , new_product_path %>
