@@ -9,3 +9,4 @@ doc/**/*
 vendor/ruby
 Gemfile.lock 
 nbproject
+db/schema.rb
