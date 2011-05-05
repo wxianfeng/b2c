@@ -1,0 +1,2 @@
+class BadwordsController < ApplicationController
+end
