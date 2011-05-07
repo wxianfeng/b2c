@@ -14,6 +14,11 @@ module FashionSprout
 
     # Add additional load paths for your own custom dirs
     # config.load_paths += %W( #{config.root}/extras )
+    
+    %w(middleware).each do |dir|
+      config.autoload_paths << "#{Rails.root.to_s}/app/#{dir}"
+    end  
+    
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named
