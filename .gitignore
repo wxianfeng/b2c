@@ -10,3 +10,4 @@ vendor/ruby
 Gemfile.lock 
 nbproject
 db/schema.rb
+public/assets/*

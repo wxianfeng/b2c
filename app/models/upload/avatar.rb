@@ -1,2 +1,2 @@
-class Upload::Avatar < Asset::Asset  
+class Upload::Avatar < Upload::Asset
 end
