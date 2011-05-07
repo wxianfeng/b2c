@@ -13,10 +13,11 @@ gem 'tabletastic', '0.2.2'
 gem 'flutie', '1.1.5'
 gem 'inherited_resources', '1.2.1'
 gem 'kaminari', '0.10.4'
+gem 'paperclip' , '2.3.11'
+gem 'mime-types', '1.16' ,:require => 'mime/types'
 
 group :test, :development do
-  gem 'mongrel', '1.2.0.pre2'
-  gem 'sqlite3-ruby', '1.3.3'
+  gem 'mongrel', '1.2.0.pre2'  
   gem 'rr', '1.0.2'
   gem 'factory_girl_rails', '1.0.1'
   gem 'rspec-rails', '2.5.0'
@@ -37,4 +38,5 @@ group :test, :development do
   gem 'rails3-generators', '0.17.4'
   gem 'rcov', '0.9.9'
   gem 'parallel_tests', '0.4.12'
+  gem 'spork', '~> 0.9.0.rc3'
 end
