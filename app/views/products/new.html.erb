@@ -1,23 +1,25 @@
-<%= javascript_include_tag "swfobject.js", "jquery.uploadify.v2.1.0.js" %>
-<% title "upload product" %>
+<% title "List a Product" %>
 
 <%= semantic_form_for @product , :validate => true  do |f| %>
-  <%= f.input :category_id ,  :as=>"select" ,  :collection=> Category.all , :required => true %>
-  <%= f.input :name , :required => true %>
-  <%= f.input :description , :required => true %>
-  <p>
-    <strong>tags:</strong>
-    <%= text_field_tag :tags %> (split by ,)
-  </p>
-  <div id="uploads">
-    <%= f.input :picture , :as=>"file" %>
-  </div>
+  <%= f.inputs do %>
+    <%= f.input :category_id ,  :as=>"select" ,  :collection=> Category.all , :required => true %>
+    <%= f.input :name , :required => true %>
+    <%= f.input :description , :required => true %>
+    
+    <li class="string required">
+      <label>Tags:</label>
+      <%= text_field_tag :tags %> (split by ,)
+    </li>
+     <li id="uploads">
+      <%= f.input :picture , :as=> :file, :label => "Upload Images"%>
+     </li>
+  <% end %>
 
   <%= f.buttons do %>
     <%= f.commit_button "Create" %>
     <%= f.cancel_link    %> 
   <% end %>
-
+  
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
