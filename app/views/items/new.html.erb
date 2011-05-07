@@ -1,0 +1,12 @@
+<% title 'Creating Item' %>
+
+<% semantic_form_for @item, :url => items_url do |f| %>
+ <% f.inputs do  %>
+	<%= render  :partial => 'form', :locals => {:f => f} %>
+ <% end %>
+ <% f.buttons do %>
+   <%= f.commit_button "Create" %>
+   <%= f.cancel_link    %> 
+ <% end %>
+<% end %>
+

@@ -3,7 +3,8 @@ FashionSprout::Application.routes.draw do
   resources :uploads
 
   resources :products
-
+  resources :items
+  
   devise_for :users,
     :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 

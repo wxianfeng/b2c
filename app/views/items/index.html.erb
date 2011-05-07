@@ -1,0 +1,24 @@
+<% title 'Listing Items' %>
+
+
+<%= link_to 'Add New Item', new_item_path %>
+
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Brand</th>
+    <th colspan="2">Actions</th>
+  </thead>
+
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= link_to item.title, item_url(item) %></td>
+      <td><%= item.title %></td>
+      <td><%= item.brand %></td>
+      <td><%= link_to 'Edit', edit_item_path(item) %></td>
+      <td><%= link_to 'Destroy', item_path(item), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+

@@ -1,0 +1,10 @@
+<% title @item.title %>
+
+Title: <%= @item.title %> <br>
+
+Brand: <%= @item.brand %> <br>
+
+Description: <%= @item.description %> <br>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
