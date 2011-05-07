@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   
   def new
     @product = Product.new
+    @product_draft = ProductDraft.create    
   end
   
   def create
@@ -20,5 +21,6 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find_by_id(params[:id])
   end
+
 
 end

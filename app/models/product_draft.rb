@@ -1,0 +1,1 @@
+class ProductDraft < ActiveRecord::Base ; end

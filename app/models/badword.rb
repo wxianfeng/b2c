@@ -1,3 +1,3 @@
 class Badword < ActiveRecord::Base
-  validates :title, :presence => true, :unique => true
+  validates :title, :presence => true, :uniqueness => true
 end

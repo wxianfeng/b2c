@@ -1,5 +1,7 @@
 FashionSprout::Application.routes.draw do
 
+  resources :uploads
+
   resources :products
 
   devise_for :users,
