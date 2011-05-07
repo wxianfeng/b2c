@@ -13,6 +13,8 @@ gem 'tabletastic', '0.2.2'
 gem 'flutie', '1.1.5'
 gem 'inherited_resources', '1.2.1'
 gem 'kaminari', '0.10.4'
+gem 'countries', '0.5.2'
+gem 'babelphish', '0.4.2'
 
 group :test, :development do
   gem 'mongrel', '1.2.0.pre2'
