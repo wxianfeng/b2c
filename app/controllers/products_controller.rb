@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   
   def new
     @product = Product.new
-    @product_draft = ProductDraft.create
+    @product_draft = ProductDraft.create    
   end
   
   def create
