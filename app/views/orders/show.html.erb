@@ -1,0 +1,59 @@
+<%= title "#{t(:order_summary)}" %>
+
+<p>
+  <b><%= t(:title) %></b>
+  <%#= @order.item.title %>
+</p>
+
+<p>
+  <b><%= t(:order_title) %></b>
+  <%= @order.title %>
+</p>
+
+<p>
+  <b><%= t(:seller) %></b>
+  <%= @order.seller %>
+</p>  
+
+<p>
+  <b><%= t(:buyer) %></b>
+  <%= @order.buyer %>
+</p>
+
+<p>
+  <b><%= t(:price) %></b>
+  <%= @order.price %>
+</p>
+
+<p>
+  <b><%= t(:quantity) %></b>
+  <%= @order.quantity %>
+</p>
+
+<p>
+  <b><%= t(:shipping_method) %></b>
+  <%= @order.shipping_method %>
+</p>
+
+<p>
+  <b><%= t(:shipping_charge) %></b>
+  <%= @order.shipping_charge %>
+</p>
+
+<p>
+  <b><%= t(:total) %></b>
+  <%= @order.total %>
+</p>
+
+<p>
+  <b>Invoice ID</b>
+  <%= @order.invoice_id %>
+</p>
+
+<p>
+  <b><%= t(:status) %></b>
+  <%= @order.status %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

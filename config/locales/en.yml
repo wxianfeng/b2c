@@ -11,6 +11,7 @@
     non_negotiable:   "Negotiable? "
     payment_method:   "Payment Method"
     status:           "Status"
+    total:            "total"
     
     start_date:       "Start Date"
     end_date:         "End Date"
@@ -25,6 +26,13 @@
     editing_offer:    "Editing Offer"
     creating_offer:   "Creating Offer"
     offer_summary:    "Offer Summary"
+    
+    listing_orders:   "Listing Orders"
+    editing_order:    "Editing Order"
+    creating_order:   "Creating Order"
+    order_summary:    "Order Summary"
+    
+    order_tile:       "Order Title"
 
     delete_confirm:   "Are you sure?"
     

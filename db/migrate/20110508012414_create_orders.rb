@@ -15,11 +15,13 @@ class CreateOrders < ActiveRecord::Migration
       t.boolean     :status
       t.timestamps
     end
-    add_index :orders, :item_id, :unique => true
+    add_index :orders,  :item_id,   :unique => true
+    add_index :orders,  :offer_id,  :unique => true    
   end
 
   def self.down
     drop_table :orders
     remove_index  :orders, :item_id
+    remove_index  :orders, :offer_id
   end
 end

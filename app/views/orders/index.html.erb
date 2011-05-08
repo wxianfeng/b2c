@@ -1,0 +1,32 @@
+<%= title "#{t(:listing_offers)}" %>
+
+<%= link_to t(:new), new_offer_path %>
+
+<table>
+  <thead>
+    <th><%= t(:title) %></th>
+    <th><%= t(:order_tile) %></th>
+    <th><%= t(:seller) %></th>
+    <th><%= t(:price) %></th>
+    <th><%= t(:quantity) %></th>
+    <th><%= t(:status) %></th>
+    <th colspan="2">Actions</th>
+  </thead>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%#= order.item.title %></td>
+      <td><%= order.title %></td>
+      <td><%= order.buyer %></td>
+      <td><%= order.seller %></td>
+      <td><%= order.price %></td>
+      <td><%= order.quantity %></td>
+      <td><%= order.status %></td>      
+      <td><%= link_to 'Show', order_path(order) %></td>      
+      <td><%= link_to 'Edit', edit_order_path(order) %></td>
+      <td><%= link_to 'Destroy', order_path(order), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+

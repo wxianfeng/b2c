@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  belongs_to  :item
-  belongs_to  :offer
+  has_many  :items
+  has_many  :offers
   
   validates   :title, :price, :presence => true
 end

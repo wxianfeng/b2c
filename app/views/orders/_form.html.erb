@@ -1,0 +1,12 @@
+<%= f.input :item_id, :collection => Item.all, :as => :select, :include => 'Select Item' %>
+<%= f.input :offer_id, :collection => Offer.all, :as => :select, :include => 'Select Order' %>
+<%= f.input :title %>
+<%= f.input :seller %>
+<%= f.input :buyer %>
+<%= f.input :price %>
+<%= f.input :quantity %>
+<%= f.input :shipping_method %>
+<%= f.input :shipping_charge %>
+<%= f.input :total %>
+<%= f.input :invoice_id %>
+<%= f.input :status, :as => :select %>
