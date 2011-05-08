@@ -1,3 +1,13 @@
 <div class="upload">
- <%= image_tag upload.url_thumb %>
+  <%=link_to image_tag(upload.url_thumb)  , upload_path(upload) , :class=>"fancybox" %>
 </div>
+
+<script type="text/javascript">
+  $(function(){
+    $(".fancybox").fancybox({
+      ajax : {
+        type	: "GET"
+      }
+    });
+  })
+</script>

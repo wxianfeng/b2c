@@ -1,0 +1,23 @@
+<div>
+  <%= image_tag @upload.url_medium %>
+</div>
+<%= link_to "Delete" , "javascript:;" , :onclick=>"deleteImg(#{@upload.id});return false;" %>
+
+
+<script type="text/javascript">
+  function deleteImg(id){    
+    if(confirm("Sure?")){
+      $.ajax({
+        type: "DELETE",
+        url: "/uploads/"+id,
+        data: "",
+        success: function(msg){
+          $.fancybox.close();
+          $(".upload").has("a[href='/uploads/"+id+"']").remove();
+        }
+      });
+    }    
+  }
+    
+  
+</script>

@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'jquery.fancybox-1.3.4' %>
+<%= javascript_include_tag "jquery.fancybox-1.3.4" %>
+
 <% title "List a Product" %>
 
 <%= semantic_form_for @product , :validate => true  do |f| %>
@@ -10,10 +13,11 @@
       <label>Tags:</label>
       <%= text_field_tag :tags %> (split by ,)
     </li>
-     <li id="uploads">
+     <li>
       <%= f.input :picture , :as=> :file, :label => "Upload Images"%>
      </li>
-  <% end %>
+     <div id="uploads"></div>     
+  <% end %> 
 
   <%= f.buttons do %>
     <%= f.commit_button "Create" %>
