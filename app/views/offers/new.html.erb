@@ -1,6 +1,6 @@
-<%= title "#{t(:creating_item)}" %>
+<%= title "#{t(:creating_offer)}" %>
 
-<% semantic_form_for @item, :url => items_url do |f| %>
+<% semantic_form_for @offer, :url => offers_url do |f| %>
  <% f.inputs do  %>
 	<%= render  :partial => 'form', :locals => {:f => f} %>
  <% end %>

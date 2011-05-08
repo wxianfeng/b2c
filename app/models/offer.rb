@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
   belongs_to  :item
   
-  validates :title, :price, :presence => true
+  validates :item_id, :price, :presence => true
 end

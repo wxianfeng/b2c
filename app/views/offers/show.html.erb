@@ -1,0 +1,59 @@
+<%= title "#{t(:offer_summary)}" %>
+
+<p>
+  <b><%= t(:title) %></b>
+  <%= @offer.item.title %>
+</p>
+
+<p>
+  <b><%= t(:seller) %></b>
+  <%= @offer.seller %>
+</p>  
+
+<p>
+  <b><%= t(:buyer) %></b>
+  <%= @offer.buyer %>
+</p>
+
+<p>
+  <b><%= t(:price) %></b>
+  <%= @offer.price %>
+</p>
+
+<p>
+  <b><%= t(:quantity) %></b>
+  <%= @offer.quantity %>
+</p>
+
+<p>
+  <b><%= t(:shipping_method) %></b>
+  <%= @offer.shipping_method %>
+</p>
+
+<p>
+  <b><%= t(:shipping_charge) %></b>
+  <%= @offer.shipping_charge %>
+</p>
+
+<p>
+  <b><%= t(:end_date) %></b>
+  <%= @offer.end_date %>
+</p>
+
+<p>
+  <b><%= t(:non_negotiable) %></b>
+  <%= @offer.non_negotiable %>
+</p>
+
+<p>
+  <b><%= t(:payment_method) %></b>
+  <%= @offer.payment_method %>
+</p>
+
+<p>
+  <b><%= t(:status) %></b>
+  <%= @offer.status %>
+</p>
+
+<%= link_to 'Edit', edit_offer_path(@offer) %> |
+<%= link_to 'Back', offers_path %>

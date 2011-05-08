@@ -1,11 +1,11 @@
-<% title 'Editing Item' %>
+<%= title "#{t(:editing_item)}" %>
 
 <% semantic_form_for @item, :url => item_url do |f| %>
  <% f.inputs do  %>
 	<%= render  :partial => 'form', :locals => {:f => f} %>
  <% end %>
  <% f.buttons do %>
-   <%= f.commit_button "Save Changes" %>
+   <%= f.commit_button t(:save) %>
    <%= f.cancel_link    %> 
  <% end %>
 <% end %>

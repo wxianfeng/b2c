@@ -1,6 +1,45 @@
   en:
+    title:            "Title"
+    brand:            "Brand"
+    description:      "Description"
+    buyer:            "Buyer"
+    seller:           "Seller"
+    price:            "Price"
+    quantity:         "Quantity"
+    shipping_method:  "Shipping Method"
+    shipping_charge:  "Shipping Charge"
+    non_negotiable:   "Negotiable? "
+    payment_method:   "Payment Method"
+    status:           "Status"
+    
+    start_date:       "Start Date"
+    end_date:         "End Date"
+    
+    
+    listing_items:    "Listing Items"
+    editing_item:     "Editing Item"
+    creating_item:    "Creating Item"
+    item_summary:     "Item Summary"
+    
+    listing_offers:   "Listing Offers"
+    editing_offer:    "Editing Offer"
+    creating_offer:   "Creating Offer"
+    offer_summary:    "Offer Summary"
+
+    delete_confirm:   "Are you sure?"
+    
+    new:  "New"
+    save: "Save"
+    submit: "Submit"
+    create: "Create"
+    update: "Update"
+    
     views:
       pagination:
         previous: "&#8592; Previous"
         next: "Next &#8594;"
         truncate: "..."
+
+
+        
+      

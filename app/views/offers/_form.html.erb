@@ -1,0 +1,12 @@
+<%= f.input :item_id, :collection => Item.all, :as => :select, :include => 'Select Item' %>
+<%= f.input :parent_id %>
+<%= f.input :seller %>
+<%= f.input :buyer %>
+<%= f.input :price %>
+<%= f.input :quantity %>
+<%= f.input :shipping_method %>
+<%= f.input :shipping_charge %>
+<%= f.input :end_date %>
+<%= f.input :non_negotiable, :label => 'Negotiable?' %>
+<%= f.input :payment_method %>
+<%= f.input :status, :as => :select %>

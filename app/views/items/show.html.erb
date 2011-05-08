@@ -1,10 +1,19 @@
-<% title @item.title %>
+<%= title "#{t(:item_summary)}" %>
 
-Title: <%= @item.title %> <br>
+<p>
+  <b><%= t(:title) %></b>
+  <%= @item.title %>
+</p>
 
-Brand: <%= @item.brand %> <br>
+<p>
+  <b><%= t(:brand) %></b>
+  <%= @item.brand %>
+</p>  
 
-Description: <%= @item.description %> <br>
+<p>
+  <b><%= t(:description) %> </b>
+  <%= @item.description %>
+</p>
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
