@@ -6,6 +6,7 @@
   <thead>
     <th><%= t(:title) %></th>
     <th><%= t(:order_tile) %></th>
+    <th><%= t(:buyer) %></th>    
     <th><%= t(:seller) %></th>
     <th><%= t(:price) %></th>
     <th><%= t(:quantity) %></th>
@@ -16,7 +17,7 @@
   <% @orders.each do |order| %>
     <tr>
       <td><%#= order.item.title %></td>
-      <td><%= order.title %></td>
+      <td><%#= order.title %></td>
       <td><%= order.buyer %></td>
       <td><%= order.seller %></td>
       <td><%= order.price %></td>

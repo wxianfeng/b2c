@@ -12,10 +12,12 @@
     payment_method:   "Payment Method"
     status:           "Status"
     total:            "total"
+    question:         "Question"
+    question_type:    "Question Type"
+    item_question:    "Item Question"
     
     start_date:       "Start Date"
     end_date:         "End Date"
-    
     
     listing_items:    "Listing Items"
     editing_item:     "Editing Item"
@@ -31,8 +33,11 @@
     editing_order:    "Editing Order"
     creating_order:   "Creating Order"
     order_summary:    "Order Summary"
-    
     order_tile:       "Order Title"
+    
+    listing_item_questions:   "Listing Item Question"
+    editing_item_question:   "Editing Item Question"
+    creating_item_questions:  "Creating Item Question"
 
     delete_confirm:   "Are you sure?"
     

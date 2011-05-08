@@ -1,0 +1,12 @@
+<%= title "#{t(:editing_item_question)}" %>
+
+<% semantic_form_for @item_question, :url => item_question_url do |f| %>
+ <% f.inputs do  %>
+	<%= render  :partial => 'form', :locals => {:f => f} %>
+ <% end %>
+ <% f.buttons do %>
+   <%= f.commit_button t(:save) %>
+   <%= f.cancel_link    %> 
+ <% end %>
+<% end %>
+

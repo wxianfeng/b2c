@@ -1,5 +1,5 @@
-<%= f.input :item_id, :collection => Item.all, :as => :select, :include => 'Select Item' %>
-<%= f.input :offer_id, :collection => Offer.all, :as => :select, :include => 'Select Order' %>
+<%= f.input :item_id, :collection => Item.all, :as => :select, :include_blank => true %>
+<%= f.input :offer_id, :collection => Offer.all, :as => :select, :include_blank => true %>
 <%= f.input :title %>
 <%= f.input :seller %>
 <%= f.input :buyer %>

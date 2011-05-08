@@ -1,0 +1,34 @@
+<%= title "#{t(:item_question)}" %>
+
+<p>
+  <b><%= t(:title) %></b>
+  <%= @item_question.item.title %>
+</p>
+
+<p>
+  <b><%= t(:seller) %></b>
+  <%= @item_question.seller %>
+</p>  
+
+<p>
+  <b><%= t(:buyer) %></b>
+  <%= @item_question.buyer %>
+</p>  
+
+<p>
+  <b><%= t(:question_type) %></b>
+  <%= @item_question.question_type %>
+</p>  
+
+<p>
+  <b><%= t(:question) %></b>
+  <%= @item_question.question %>
+</p>  
+
+<p>
+  <b><%= t(:status) %> </b>
+  <%= @item_question.status %>
+</p>
+
+<%= link_to 'Edit', edit_item_question_path(@item_question) %> |
+<%= link_to 'Back', item_questions_path %>
