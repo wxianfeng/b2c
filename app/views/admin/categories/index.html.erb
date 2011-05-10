@@ -5,15 +5,20 @@
 <% title 'Listing categories' %>
 
 <table>
-  <th><td>name</td><td>parent_category</td><td>is_public</td><td>show_order</td></th>
-  <% @categories.each do |c| %>
-  <tr>
-    <td><%= c.name %></td>
-    <td><%= c.parent.name %></td>
-    <td><%= c.human_public %></td>
-    <td><%= c.show_order %></td>
-  </tr>
+  <thead><tr><th>name</th><th>parent_category</th><th>is_public</th><th>show_order</th></tr></thead>
+<tbody>
+  <% @categories.each_with_index do |c,index| %>
+    <tr class="<%= index%2==0 ? "odd" :"even" %>">
+      <td><%= c.name %></td>
+      <td><%= c.parent.try(:name) %></td>
+      <td><%= c.public %></td>
+      <td><%= c.show_order %></td>
+      <td class="actions show_link"><%= link_to "Show" , admin_category_path(c) %></td>
+      <td class="actions edit_link"><%= link_to "Edit" , edit_admin_category_path(c) %></td>
+      <td class="actions destroy_link"><%= link_to "Delete" , admin_category_path(c),:method=>:delete ,:confirm=>"sure?"  %></td>
+    </tr>
   <% end %>
+</tbody>
 </table>
 
 
