@@ -2,7 +2,7 @@
 
 <%= semantic_form_for([:admin,@category], :validate => true) do |form| %>
   <%= form.inputs do %>
-    <%= hidden_field_tag :parent_id  , params[:parent_id] %>
+    <%= hidden_field_tag "category[parent_id]"  , params[:parent_id] %>
     <li class="string optional">parent category:<%= parent.present? ? parent.try(:name) : "NONE" %></li>
     <%= form.input :name  , :required => true %>   
     <%= form.input :public  %>

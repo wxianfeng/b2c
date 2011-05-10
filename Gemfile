@@ -22,7 +22,7 @@ group :test, :development do
   gem 'mongrel', '1.2.0.pre2'  
   gem 'rr', '1.0.2'
   gem 'factory_girl_rails', '1.0.1'
-  gem 'rspec-rails', '2.5.0'
+  gem 'rspec-rails', '2.6.0.rc4'
   gem 'database_cleaner', '0.6.6'
   gem 'cucumber', '0.10.2'
   gem 'cucumber-rails', '0.4.0'

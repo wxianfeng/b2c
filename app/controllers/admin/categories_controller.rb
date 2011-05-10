@@ -2,14 +2,29 @@ class Admin::CategoriesController < ApplicationController
   before_filter :find_category , :only=>[:show,:edit,:update,:destroy]
   
   def index
-    @categories = Category.order("show_order DESC")
+    @categories = if params[:parent_id]
+      Category.find(params[:parent_id]).childrens
+    else
+      Category.where("parent_id is NULL").order("show_order DESC")
+    end
     @chart = Shopdls::OrgChart.new
     @chart.add_column('string', 'Name' )
     @chart.add_column('string', 'Manager')
     @chart.add_column('string', 'ToolTip')
-    rows = [['Root','','']]
-    @categories.each do |c|
-      rows << [c.name,'Root','']
+    if params[:parent_id]
+      rows = []
+      @categories.each do |c|
+        rows << [c.name,c.parent.name,'']
+      end
+      ele = @categories.last
+      ele.parents.each do |p|
+        rows << [p.name , p.parent.try(:name),'']
+      end  
+    else
+      rows = [['Root','','']]
+      @categories.each do |c|      
+        rows << [c.name,'Root','']
+      end
     end
     @chart.add_rows rows
     options = { :allowHtml => true }

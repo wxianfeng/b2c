@@ -6,4 +6,14 @@ class Category < ActiveRecord::Base
   validates :name , :presence => true  
   validates :show_order , :format => { :with => /\d+/ , :message => "must number" } ,:uniqueness => true
   
+  def parents
+    ps = []
+    s = self.parent
+    while s.present?
+      ps << s
+      s = s.parent
+    end    
+    ps
+  end
+  
 end
