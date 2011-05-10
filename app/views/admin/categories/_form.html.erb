@@ -1,8 +1,11 @@
-<%= semantic_form_for([:admin,resource], :validate => true) do |form| %>
+<% parent = Category.find_by_id(params[:parent_id]) %>
+
+<%= semantic_form_for([:admin,@category], :validate => true) do |form| %>
   <%= form.inputs do %>
-    <%= form.input :name %>
-    <%= form.input :category_id %>
-    <%= form.input :public %>
+    <%= hidden_field_tag :parent_id  , params[:parent_id] %>
+    <li class="string optional">parent category:<%= parent.present? ? parent.try(:name) : "NONE" %></li>
+    <%= form.input :name  , :required => true %>   
+    <%= form.input :public  %>
     <%= form.input :show_order %>
   <% end %>
 
@@ -10,5 +13,5 @@
     <%= form.commit_button "Create" %>
     <%= form.cancel_link    %> 
   <% end %>
-  
+
 <% end %>

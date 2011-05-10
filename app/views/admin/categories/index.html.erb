@@ -4,29 +4,18 @@
 
 <% title 'Listing categories' %>
 
-<table class="list">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Author</th>
-      <th>Percent</th>
-      <th class="numeric">Price</th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="odd" id="post_1">
-      <td><a href="#">Something</a></td>
-      <td>Lorem ipsum dolor sit amet consequat. Duis aute irure dolor.</td>
-      <td>Jim Beam</td>
-      <td class="percent"><div class="gauge"><div class="percent">80%</div><div style="width: 80%;" class="gauge-line"></div></div></td>
-      <td class="numeric">$100</td>
-      <td class="actions show_link"><a href="#">Show</a></td>
-      <td class="actions edit_link"><a href="#">Edit</a></td>
-      <td class="actions destroy_link"><a href="#">Destroy</a></td>
-    </tr>    
+<table>
+  <th><td>name</td><td>parent_category</td><td>is_public</td><td>show_order</td></th>
+  <% @categories.each do |c| %>
+  <tr>
+    <td><%= c.name %></td>
+    <td><%= c.parent.name %></td>
+    <td><%= c.human_public %></td>
+    <td><%= c.show_order %></td>
+  </tr>
+  <% end %>
 </table>
+
 
 <p>
   <%= link_to 'New Category', new_admin_category_path, :class => 'button' %>

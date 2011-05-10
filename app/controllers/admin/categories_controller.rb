@@ -20,4 +20,8 @@ class Admin::CategoriesController < ApplicationController
     end
   end
   
+  def new
+    @category = Category.new
+  end
+  
 end
