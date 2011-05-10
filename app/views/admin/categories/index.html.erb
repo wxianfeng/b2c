@@ -9,18 +9,16 @@
 <tbody>
   <% @categories.each_with_index do |c,index| %>
     <tr class="<%= index%2==0 ? "odd" :"even" %>">
-      <td><%= c.name %></td>
+      <td><%= link_to c.name , admin_category_path(c) %></td>
       <td><%= c.parent.try(:name) %></td>
       <td><%= c.public %></td>
-      <td><%= c.show_order %></td>
-      <td class="actions show_link"><%= link_to "Show" , admin_category_path(c) %></td>
+      <td><%= c.show_order %></td>      
       <td class="actions edit_link"><%= link_to "Edit" , edit_admin_category_path(c) %></td>
       <td class="actions destroy_link"><%= link_to "Delete" , admin_category_path(c),:method=>:delete ,:confirm=>"sure?"  %></td>
     </tr>
   <% end %>
 </tbody>
 </table>
-
 
 <p>
   <%= link_to 'New Category', new_admin_category_path, :class => 'button' %>

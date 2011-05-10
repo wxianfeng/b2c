@@ -7,14 +7,11 @@ class Admin::CategoriesController < ApplicationController
     @chart.add_column('string', 'Name' )
     @chart.add_column('string', 'Manager')
     @chart.add_column('string', 'ToolTip')
-    @chart.add_rows( [
-        [ {:v => 'Mike', :f => 'Mike<div style="color:red; font-style:italic">President</div>' }, '' , 'The President' ],
-        [ {:v => 'Jim' , :f => 'Jim<div style="color:red; font-style:italic">Vice President<div>'}, 'Mike', 'VP' ],
-        [ 'Alice' , 'Mike', '' ],
-        [ 'Bob' , 'Jim' , 'Bob Sponge' ],
-        [ 'Carol' , 'Bob' , '' ]
-      ] )
-
+    rows = [['Root','','']]
+    @categories.each do |c|
+      rows << [c.name,'Root','']
+    end
+    @chart.add_rows rows
     options = { :allowHtml => true }
     options.each_pair do | key, value |
       @chart.send "#{key}=", value
