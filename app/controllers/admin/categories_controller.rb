@@ -19,7 +19,7 @@ class Admin::CategoriesController < ApplicationController
       ele = @categories.last
       ele.parents.each do |p|
         rows << [p.name , p.parent.try(:name),'']
-      end  
+      end if ele.present?
     else
       rows = [['Root','','']]
       @categories.each do |c|      
