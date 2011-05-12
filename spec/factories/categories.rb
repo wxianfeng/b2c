@@ -1,8 +1,6 @@
-# Read about factories at http://github.com/thoughtbot/factory_girl
-
 Factory.define :category do |f|
-  f.name "MyString"
-  f.category_id 1
-  f.public false
-  f.show_order 1
+  f.name "category_name"
+  f.parent_id { |a| a.parent_id }
+  f.public true
+  f.show_order { |a| a.show_order }
 end
