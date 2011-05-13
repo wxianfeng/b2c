@@ -3,8 +3,8 @@ class Category < ActiveRecord::Base
   has_many :childrens , :foreign_key => "parent_id" , :class_name=>"Category" , :dependent=>:destroy
   belongs_to :parent , :foreign_key => "parent_id" ,  :class_name=>"Category"
   
-  validates :name , :presence => true  
-  validates :show_order , :format => { :with => /\d+/ , :message => "must number" } ,:uniqueness => true
+  validates :name , :presence => true  , :uniqueness => true
+  validates :show_order , :format => { :with => /\d+/ , :message => "must number" } ,:uniqueness => true , :if => Proc.new { |c| c.parent_id.nil? }
   
   def parents
     ps = []

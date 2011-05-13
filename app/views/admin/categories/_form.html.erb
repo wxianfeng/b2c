@@ -6,7 +6,9 @@
     <li class="string optional">parent category:<%= parent.present? ? parent.try(:name) : "NONE" %></li>
     <%= form.input :name  , :required => true %>   
     <%= form.input :public  %>
-    <%= form.input :show_order %>
+    <% if params[:parent_id].nil? %>
+      <%= form.input :show_order %>
+    <% end %>
   <% end %>
 
   <%= form.buttons do %>

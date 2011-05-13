@@ -4,20 +4,16 @@
 <% title "List a Product" %>
 
 <%= semantic_form_for @product , :validate => true  do |f| %>
-  <%= f.inputs do %>
-    <%#= f.input :category_id ,  :as=>"select" ,  :collection=> Category.all , :required => true %>
-
+  <%= f.inputs do %>   
     Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>
-
     <div id="select_category">
-    <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
-    <%= select_tag "second_category" , "", :multiple => true , :style=>'height:250px;' %>
-    <%= select_tag "third_category" , "", :multiple => true , :style=>'height:250px;'  %>
-    <%= select_tag "four_category" , "", :multiple => true , :style=>'height:250px;'  %>
+      <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "name", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+      <%= select_tag "second_category" , "", :multiple => true , :style=>'height:250px;' %>
+      <%= select_tag "third_category" , "", :multiple => true , :style=>'height:250px;'  %>
+      <%= select_tag "four_category" , "", :multiple => true , :style=>'height:250px;'  %>
     </div>
     <%= f.input :name , :required => true %>
     <%= f.input :description , :required => true %>
-
     <li class="string required">
       <label>Tags:</label>
       <%= text_field_tag :tags %> (split by ,)
@@ -27,12 +23,10 @@
     </li>
     <div id="uploads"></div>     
   <% end %> 
-
   <%= f.buttons do %>
     <%= f.commit_button "Create" %>
     <%= f.cancel_link    %> 
   <% end %>
-
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
@@ -71,10 +65,27 @@
       $("#select_category").toggle();
     })
     
-  $("#first_category").change(function(){
-    var $this = $(this);
-    $("#second_category").html("<option>xx</option>");
-  })
-		
+    var all_categories = JSON.parse('<%=raw Category.all_categories.to_json %>')    
+    
+    $("#first_category,#second_category,#third_category").change(function(){
+      var $this = $(this);
+      var childrens = all_categories[$this.val()];
+      var s;
+      $.each(childrens,function(index,val){
+        s += "<option value='"+val+"'>" + val + "</option>"
+      })
+      switch($this.attr("id")){
+        case "first_category":
+          $("#second_category").html(s);
+          break;
+        case "second_category":
+          $("#third_category").html(s);
+          break;
+        case "third_category":
+          $("#four_category").html(s);
+          break;
+      }
+    })
+
   }); 
 </script>
