@@ -10,10 +10,10 @@
     Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>
 
     <div id="select_category">
-    <%= select_tag "first_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
-    <%= select_tag "second_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
-    <%= select_tag "third_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
-    <%= select_tag "four_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+    <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+    <%= select_tag "second_category" , "", :multiple => true , :style=>'height:250px;' %>
+    <%= select_tag "third_category" , "", :multiple => true , :style=>'height:250px;'  %>
+    <%= select_tag "four_category" , "", :multiple => true , :style=>'height:250px;'  %>
     </div>
     <%= f.input :name , :required => true %>
     <%= f.input :description , :required => true %>
@@ -70,6 +70,11 @@
     $("#edit_category").click(function(){
       $("#select_category").toggle();
     })
+    
+  $("#first_category").change(function(){
+    var $this = $(this);
+    $("#second_category").html("<option>xx</option>");
+  })
 		
   }); 
 </script>

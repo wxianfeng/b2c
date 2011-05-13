@@ -41,4 +41,5 @@ group :test, :development do
   gem 'rcov', '0.9.9'
   gem 'parallel_tests', '0.4.12'
   gem 'spork', '~> 0.9.0.rc3'
+  gem 'jasmine' , '1.0.2.0' 
 end
