@@ -5,25 +5,34 @@
 
 <%= semantic_form_for @product , :validate => true  do |f| %>
   <%= f.inputs do %>
-    <%= f.input :category_id ,  :as=>"select" ,  :collection=> Category.all , :required => true %>
+    <%#= f.input :category_id ,  :as=>"select" ,  :collection=> Category.all , :required => true %>
+
+    Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>
+
+    <div id="select_category">
+    <%= select_tag "first_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+    <%= select_tag "second_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+    <%= select_tag "third_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+    <%= select_tag "four_category" , options_from_collection_for_select(Category.all, "id", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+    </div>
     <%= f.input :name , :required => true %>
     <%= f.input :description , :required => true %>
-    
+
     <li class="string required">
       <label>Tags:</label>
       <%= text_field_tag :tags %> (split by ,)
     </li>
-     <li>
+    <li>
       <%= f.input :picture , :as=> :file, :label => "Upload Images"%>
-     </li>
-     <div id="uploads"></div>     
+    </li>
+    <div id="uploads"></div>     
   <% end %> 
 
   <%= f.buttons do %>
     <%= f.commit_button "Create" %>
     <%= f.cancel_link    %> 
   <% end %>
-  
+
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
@@ -43,7 +52,7 @@
       onComplete : function(event, queueID, fileObj, response, data) { 
         var dat = eval('(' + response + ')');
         $.getScript(dat.upload);},
-        scriptData : {
+      scriptData : {
         '_http_accept': 'application/javascript',
         'format' : 'json',
         '_method': 'post',
@@ -57,6 +66,10 @@
       event.preventDefault(); 
       $('#product_picture').uploadifyUpload(); 
     });
+    
+    $("#edit_category").click(function(){
+      $("#select_category").toggle();
+    })
 		
   }); 
 </script>

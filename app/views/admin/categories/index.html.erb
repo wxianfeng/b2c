@@ -15,7 +15,7 @@
         <td><%= c.show_order %></td>      
         <td class="actions edit_link"><%= link_to "Edit" , edit_admin_category_path(c) %> | </td> 
         <td class="actions destroy_link"><%= link_to "Delete" , admin_category_path(c),:method=>:delete ,:confirm=>"sure?"  %> | </td> 
-        <td class="actions show_link"><%= link_to "Show sub_categories" ,admin_categories_path(:parent_id=>c.id) %></t  d>
+        <td class="actions show_link"><%= link_to "sub_categories" ,admin_categories_path(:parent_id=>c.id) %></td>
       </tr>
     <% end %>
   </tbody>
