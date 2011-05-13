@@ -6,8 +6,8 @@ class Category < ActiveRecord::Base
   validates :name , :presence => true  , :uniqueness => true
   validates :show_order , :format => { :with => /\d+/ , :message => "must number" } ,:uniqueness => true , :if => Proc.new { |c| c.parent_id.nil? }
   
-  def parents
-    ps = []
+  def parents(include_self=false)
+    ps = include_self == true ? [self] : []
     s = self.parent
     while s.present?
       ps << s

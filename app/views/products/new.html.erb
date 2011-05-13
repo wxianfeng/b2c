@@ -4,6 +4,7 @@
 <% title "List a Product" %>
 
 <%= semantic_form_for @product , :validate => true  do |f| %>
+  <%= f.hidden_field :category_id %>
   <%= f.inputs do %>   
     Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>
     <div id="select_category">
@@ -11,6 +12,7 @@
       <%= select_tag "second_category" , "", :multiple => true , :style=>'height:250px;' %>
       <%= select_tag "third_category" , "", :multiple => true , :style=>'height:250px;'  %>
       <%= select_tag "four_category" , "", :multiple => true , :style=>'height:250px;'  %>
+      <%= link_to "OK" , "javascript:;" , :id=>"ok_category" %>
     </div>
     <%= f.input :name , :required => true %>
     <%= f.input :description , :required => true %>
@@ -65,27 +67,81 @@
       $("#select_category").toggle();
     })
     
-    var all_categories = JSON.parse('<%=raw Category.all_categories.to_json %>')    
+    var allCategories = JSON.parse('<%=raw Category.all_categories.to_json %>')    
     
     $("#first_category,#second_category,#third_category").change(function(){
       var $this = $(this);
-      var childrens = all_categories[$this.val()];
+      var childrens = allCategories[$this.val()];
       var s;
       $.each(childrens,function(index,val){
         s += "<option value='"+val+"'>" + val + "</option>"
       })
       switch($this.attr("id")){
         case "first_category":
-          $("#second_category").html(s);
+          emptyOptions(["second","third","four"]);
+          $("#second_category").html(s);          
           break;
         case "second_category":
-          $("#third_category").html(s);
+          emptyOptions(["third","four"]);
+          $("#third_category").html(s);          
           break;
         case "third_category":
+          emptyOptions(["four"]);
           $("#four_category").html(s);
           break;
       }
     })
+    
+    function emptyOptions(arr){
+      var length = arr.length;
+      for(var i=0; i<length;++i){        
+        $("#"+arr[i]+"_category").html("");
+      }
+    }
+
+    function getName(categoryName){
+      $.ajax({
+        type: "POST",
+        url: "/admin/categories/get_category",
+        data: "name="+categoryName,
+        success: function(text,status){
+          if(status == "success"){
+            $("#show_category").html(text["names"]);
+            $("#product_category_id").val(text["category_id"]);
+          }else{
+            alert("ERROR"); 
+          }              
+        }
+      });
+    }
+    
+    function getCategory(){
+      var categoryName;
+      var first = $("#first_category").val();
+      var second = $("#second_category").val();
+      var third = $("#third_category").val();
+      var four = $("#four_category").val();
+      if(four != null){
+        categoryName = four;  
+        getName(categoryName);
+        $("#select_category").hide();
+      }else if(third != null){
+        categoryName = third;
+        getName(categoryName);
+        $("#select_category").hide();
+      }else if(second != null){
+        categoryName = second;
+        getName(categoryName);
+        $("#select_category").hide();
+      }else if(first != null ){
+        categoryName = first;
+        getName(categoryName);
+        $("#select_category").hide();
+      }else
+        alert("you must select a category!");
+    }
+    
+    $("#ok_category").click(getCategory);
 
   }); 
 </script>

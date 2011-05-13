@@ -1,7 +1,6 @@
 FashionSprout::Application.routes.draw do
 
   resources :uploads
-
   resources :products
   resources :items
   resources :offers
@@ -20,6 +19,10 @@ FashionSprout::Application.routes.draw do
   root :to => 'dashboard#index'
   
   namespace :admin do
-    resources :categories
+    resources :categories do
+      collection {
+        post :get_category
+      }
+    end
   end
 end

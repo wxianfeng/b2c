@@ -68,8 +68,14 @@ class Admin::CategoriesController < ApplicationController
     end
   end
   
-  protected
+  def get_category
+    category_name = params[:name]
+    category = Category.find_by_name(category_name)
+    names = category.parents(true).reverse.map(&:name).join("->")
+    render :json => {"category_id"=>category.id,"names"=>names}.to_json
+  end
   
+  protected  
   def find_category
     @category = Category.find_by_id(params[:id])
   end
