@@ -6,6 +6,7 @@ class CreateTableProductShippings < ActiveRecord::Migration
       
       t.timestamps
     end
+    add_index :product_shippings , [:product_id,:shipping_id]
   end
 
   def self.down
