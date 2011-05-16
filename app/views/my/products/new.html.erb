@@ -4,11 +4,11 @@
 <% title "List a Product" %>
 
 <%= semantic_form_for [:my,@product] , :validate => true  do |f| %>
-  <%= f.hidden_field :category_id %>
+  <%= hidden_field_tag :category_name %>
   <%= f.inputs do %>   
     Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>
     <div id="select_category">
-      <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "name", "name"), :multiple => true , :style=>'height:250px;' , :required=>true %>
+      <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "name", "name"), :multiple => true , :style=>'height:250px;' %>
       <%= select_tag "second_category" , "", :multiple => true , :style=>'height:250px;' %>
       <%= select_tag "third_category" , "", :multiple => true , :style=>'height:250px;'  %>
       <%= select_tag "four_category" , "", :multiple => true , :style=>'height:250px;'  %>
@@ -30,17 +30,21 @@
     </li>
     shipping:
     <table>
-      <tr><th>method</th><th>price</th></tr>
-      <tr><td></td><td></td></tr>
+      <tr><th>method</th><th cospan="4">price</th></tr>
+      <% ShippingCategory.all.each do |sc| %>
+        <tr><td><%= sc.name %></td><td><%= radio_button_tag "shipping[#{sc.name}]" , "free" , true %> free </td><td><%= radio_button_tag "shipping[#{sc.name}]" , "not_support" %> not support</td>
+          <td><%= radio_button_tag "shipping[#{sc.name}]" , "custom" %> custom</td><td style="display:none;"><%= text_field_tag "#{sc.name}[price]" %></td></tr>
+      <% end %>
     </table>
     <li>
-      <%= f.input :picture , :as=> :file, :label => "Upload Images"%>
+      Pictures:
+      <%= file_field_tag :picture %>
     </li>
     <div id="uploads"></div>     
   <% end %> 
   <%= f.buttons do %>
-    <%= f.commit_button "Create" %>
-    <%= f.cancel_link    %> 
+    <%= f.submit "Create" , :type=>"button" , :onclick=>"submitForm();return false;" %>
+    <%= f.cancel_link %> 
   <% end %>
 <% end %>
 
@@ -52,7 +56,7 @@
       event.preventDefault();
     }); 
 	
-    $('#product_picture').uploadify({
+    $('#picture').uploadify({
       uploader : '/uploadify/uploadify.swf',
       cancelImg : '/uploadify/cancel.png',
       multi : true,
@@ -72,8 +76,8 @@
     });
 	
     $('#product_submit').click(function(event){
-      event.preventDefault(); 
-      $('#product_picture').uploadifyUpload(); 
+      // event.preventDefault(); 
+      $('#picture').uploadifyUpload(); 
     });
     
     $("#edit_category").click(function(){
@@ -155,6 +159,27 @@
     }
     
     $("#ok_category").click(getCategory);
+    
+    $("[id*='shipping_']").click(function(){
+      var reg = /_custom/ ;
+      var $this = $(this);
+      var $td = $this.parents("tr").find("td").eq(-1);
+      if(reg.exec($this.attr("id")) != null)
+        $td.show();
+      else
+        $td.hide();
+    }) 
 
   }); 
+  
+  function setCategoryName(){
+    var $c = $("[id*='_category']").find("option:selected").eq(-1);
+    $("#category_name").val($c.val());
+  }
+    
+  function submitForm(){
+    setCategoryName();
+    $("form").submit();
+  }
+  
 </script>

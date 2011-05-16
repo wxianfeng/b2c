@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   has_many :tags , :through=>:product_tags
   has_many :pictures , :as=>:assetable , :class_name => "Upload::Asset"
   
-  validates :category_id , :presence => true
+  # validates :category_id , :presence => true
   validates :name , :presence => true
   validates :description , :presence => true
   
