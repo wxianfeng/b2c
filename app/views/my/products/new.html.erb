@@ -3,7 +3,7 @@
 
 <% title "List a Product" %>
 
-<%= semantic_form_for @product , :validate => true  do |f| %>
+<%= semantic_form_for [:my,@product] , :validate => true  do |f| %>
   <%= f.hidden_field :category_id %>
   <%= f.inputs do %>   
     Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>

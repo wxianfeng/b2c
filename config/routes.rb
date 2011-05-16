@@ -1,7 +1,6 @@
 FashionSprout::Application.routes.draw do
 
-  resources :uploads
-  resources :products
+  resources :uploads  
   resources :items
   resources :offers
   resources :orders
@@ -17,6 +16,10 @@ FashionSprout::Application.routes.draw do
   end
 
   root :to => 'dashboard#index'
+  
+  namespace :my do
+    resources :products
+  end
   
   namespace :admin do
     resources :categories do
