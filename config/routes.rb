@@ -1,4 +1,4 @@
-FashionSprout::Application.routes.draw do
+Shopdls::Application.routes.draw do
 
   resources :uploads  
   resources :items
