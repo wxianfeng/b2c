@@ -1,5 +1,7 @@
 Shopdls::Application.routes.draw do
 
+  resources :colors
+
   resources :uploads  
   resources :items
   resources :offers

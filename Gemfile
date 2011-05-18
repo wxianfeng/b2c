@@ -37,7 +37,7 @@ group :test, :development do
   gem 'vcr', '1.8.0'
   gem 'webmock', '1.6.2', :require => false
   gem 'rails_best_practices', '0.7.5'
-  gem 'rails3-generators', '0.17.4'
+  # gem 'rails3-generators', '0.17.4'
   gem 'rcov', '0.9.9'
   gem 'parallel_tests', '0.4.12'
   gem 'spork', '~> 0.9.0.rc3'
