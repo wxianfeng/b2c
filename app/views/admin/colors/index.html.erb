@@ -1,13 +1,18 @@
 <% title 'Listing colors' %>
 
 <table>
-  <tr><th>name</th><th>public</th><th></th></tr>
+  <tr><th>name</th><th>public</th><th>value</th><th>preview</th><th></th></tr>
   <% @colors.each do |c| %>
-  <tr><td><%= c.name %></td><td><%= c.public %></td>
-    <td><%= link_to "Edit" , edit_admin_color_path(c) %> | 
-    <%= link_to "Delete" , [:admin,c] , :method=>:delete , :confirm=>"Sure?" %>
-    </td>
-  </tr>
+    <tr>
+      <td><%= c.name %></td>
+      <td><%= c.public %></td>
+      <td><%= c.value %></td>      
+      <td><span class="crayon" style="background-color:#999;">&nbsp;</span></td>
+      <td>
+        <%= link_to "Edit" , edit_admin_color_path(c) %> | 
+        <%= link_to "Delete" , [:admin,c] , :method=>:delete , :confirm=>"Sure?" %>
+      </td>
+    </tr>
   <% end %>
 </table>
 
