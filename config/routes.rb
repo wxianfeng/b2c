@@ -1,4 +1,6 @@
-FashionSprout::Application.routes.draw do
+Shopdls::Application.routes.draw do
+
+  resources :colors
 
   resources :uploads  
   resources :items

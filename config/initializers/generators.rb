@@ -1,7 +1,7 @@
-FashionSprout::Application.configure do
+Shopdls::Application.configure do
   config.generators do |g|
     g.stylesheets false
-    g.helper false
+    g.helper true
     g.integration_tool false
     g.fixture_replacement :factory_girl,
       :dir => 'spec/factories'
