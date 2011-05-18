@@ -1,0 +1,8 @@
+<%= semantic_form_for([:admin,@color], :validate => true) do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :name %>
+    <%= form.input :public %>
+  <% end %>
+
+  <%= form.buttons %> or <%= link_to 'cancel', [:admin,@color] %>
+<% end %>

@@ -1,6 +1,5 @@
-class ColorsController < ApplicationController
-  # GET /colors
-  # GET /colors.xml
+class Admin::ColorsController < ApplicationController
+
   def index
     @colors = Color.all
 
@@ -10,15 +9,8 @@ class ColorsController < ApplicationController
     end
   end
 
-  # GET /colors/1
-  # GET /colors/1.xml
   def show
     @color = Color.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @color }
-    end
   end
 
   # GET /colors/new
@@ -44,7 +36,7 @@ class ColorsController < ApplicationController
 
     respond_to do |format|
       if @color.save
-        format.html { redirect_to(@color, :notice => 'Color was successfully created.') }
+        format.html { redirect_to([:admin,@color], :notice => 'Color was successfully created.') }
         format.xml  { render :xml => @color, :status => :created, :location => @color }
       else
         format.html { render :action => "new" }
@@ -60,7 +52,7 @@ class ColorsController < ApplicationController
 
     respond_to do |format|
       if @color.update_attributes(params[:color])
-        format.html { redirect_to(@color, :notice => 'Color was successfully updated.') }
+        format.html { redirect_to([:admin,@color], :notice => 'Color was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +68,7 @@ class ColorsController < ApplicationController
     @color.destroy
 
     respond_to do |format|
-      format.html { redirect_to(colors_url) }
+      format.html { redirect_to(admin_colors_url) }
       format.xml  { head :ok }
     end
   end

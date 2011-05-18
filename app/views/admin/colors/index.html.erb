@@ -4,8 +4,8 @@
   <tr><th>name</th><th>public</th><th></th></tr>
   <% @colors.each do |c| %>
   <tr><td><%= c.name %></td><td><%= c.public %></td>
-    <td><%= link_to "Edit" , edit_color_path(c) %> | 
-    <%= link_to "Delete" , c , :method=>:delete , :confirm=>"Sure?" %>
+    <td><%= link_to "Edit" , edit_admin_color_path(c) %> | 
+    <%= link_to "Delete" , [:admin,c] , :method=>:delete , :confirm=>"Sure?" %>
     </td>
   </tr>
   <% end %>
@@ -14,6 +14,6 @@
 <br />
 
 <p>
-  <%= link_to 'New Color', new_color_path, :class => 'button' %>
+  <%= link_to 'New Color', new_admin_color_path, :class => 'button' %>
 </p>
 
