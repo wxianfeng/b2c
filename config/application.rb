@@ -19,6 +19,8 @@ module Shopdls
       config.autoload_paths << "#{Rails.root.to_s}/app/#{dir}"
     end  
     
+    Dir[Rails.root.join('lib/*.rb')].each {|f| require f}
+    
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named

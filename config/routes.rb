@@ -1,6 +1,4 @@
-Shopdls::Application.routes.draw do
-
-  resources :colors
+Shopdls::Application.routes.draw do  
 
   resources :uploads  
   resources :items
@@ -22,6 +20,7 @@ Shopdls::Application.routes.draw do
   end
   
   namespace :admin do
+    resources :colors
     resources :categories do
       collection {
         post :get_category

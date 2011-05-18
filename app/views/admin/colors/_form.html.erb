@@ -1,0 +1,15 @@
+<%= semantic_form_for([:admin,@color], :validate => true) do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :name  , :required=>true %>
+    <li id="color_value_input" class="string required">
+      <label for="color_name">Value<abbr title="required">*</abbr></label>
+      <%= text_field_tag "color[value]" , @color.try(:value) , :required=>true %>
+      <span class="crayon" style="background-color:#999;">&nbsp;</span>
+      <p class="inline-errors"></p>
+    </li>
+    <%= form.input :public %>        
+    <%#= form.input :created_at , :as=>:color_picker %>
+  <% end %>
+
+  <%= form.buttons %> or <%= link_to 'cancel', [:admin,@color] %>
+<% end %>
