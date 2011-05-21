@@ -321,3 +321,10 @@ input#submit{
     border-bottom: 1px solid lightpink;
     border-right: 1px solid lightpink;
     background: pink; }
+
+/*  admin sidebar */
+.sidebar{ }
+.sidebar li{ border-bottom:1px dotted #444444;width: 130px; }
+
+/* user */
+.user{float:left;} 

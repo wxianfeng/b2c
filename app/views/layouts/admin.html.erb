@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
     <title><%= configatron.app_name %> - <%= yield(:title) || 'Home' %></title>
-    <%= stylesheet_link_tag 'dev.css' %>
+    <%#= stylesheet_link_tag  "application"  %>
+    <%= stylesheet_link_tag  "dev"  %>
     <%= stylesheet_link_tag 'formtastic.css','jquery.crayonbox' %>
     <%= stylesheet_link_tag 'formtastic_changes.css' %>  
     <%  if params[:controller] != 'admin/colors' %>
@@ -17,14 +18,13 @@
 
     <!-- HEADER -->
     <div id="header">
-      <%= yield :header %>
+      <%= yield :header %>      
       <div>
         <h1><a href="/">ShopDeals</a></h1>
-
         <% if current_user %>
           <h3>
-            <span id="user_info">Hello, <%#= link_to h(current_user.full_name), user_path(current_user) %></span>
-            <span id="logout">(<%#= link_to 'Log Out', logout_path %>)</span>
+            <span id="user_info">Hello, <%= link_to h(current_user.full_name), edit_user_registration_path %></span>
+            <span id="logout">(<%= link_to 'Log Out', destroy_user_session_path %>)</span>
           </h3>
         <% end %>
       </div>
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div>
-      <%= render :partial => "layouts/navigation" %>
+      <%#= render :partial => "layouts/navigation" %>
     </div>
     <!-- HEADER end -->
 
@@ -41,7 +41,8 @@
       <!-- content -->
       <% if yield :sidebar %>
         <div class="sidebar">
-          <%= yield :sidebar %>
+          <%#= yield :sidebar %>
+          <%= render "/layouts/admin_sidebar"  %>
         </div>
       <% end %>
 

@@ -53,6 +53,7 @@ form.formtastic fieldset.inputs ol li.string input,
 form.formtastic fieldset.inputs ol li.datetime input,
 form.formtastic fieldset.inputs ol li.password input,
 form.formtastic fieldset.inputs ol li.numeric input,
+form.formtastic fieldset.inputs ol li.email input,
 form.search li.string input {
   border: 1px solid rgba(0, 0, 0, 0.398438);
   padding: 8px;
