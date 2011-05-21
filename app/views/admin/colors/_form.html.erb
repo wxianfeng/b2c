@@ -9,11 +9,16 @@
 		<link rel="stylesheet" href="/stylesheets/color_picker/color_picker-ie7.css" type="text/css">
 <![endif]-->
 
+<%= error_messages_for @color %>
+                
 <%= form_for([:admin,@color]) do |f| %>
-  <li>name*:<%= f.text_field :name , :required=>true %></li>  
-  <li>value*:<input type="text" id="myhexcode" value="" style="width:75px;" name="color[value]" required/>
+  <li>name*:<%= f.text_field :name , :required=>"required" %></li>
+  <li>value*:<%= f.text_field :value , :required=>"required", :id=>"myhexcode" , :size=>10 %>
     <a href="javascript:void(0);" rel="colorpicker&objcode=myhexcode&objshow=myshowcolor&showrgb=1" style="text-decoration:none;display:inline-block;" >
       <div id="myshowcolor" style="width:15px;height:15px;border:1px solid black">&nbsp;</div></a>
+  </li>
+  <li>
+    public:<%= f.check_box :public %>
   </li>
   <%= f.submit  %> or <%= link_to 'cancel', [:admin,@color] %>
 <% end %>

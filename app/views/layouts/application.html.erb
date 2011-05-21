@@ -5,8 +5,10 @@
     <%= stylesheet_link_tag 'dev.css' %>
     <%= stylesheet_link_tag 'formtastic.css','jquery.crayonbox' %>
     <%= stylesheet_link_tag 'formtastic_changes.css' %>  
-    <% if params[:controller] != 'admin/colors' and params[:action] != 'new' %>
-      <%= javascript_include_tag 'jquery','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
+    <%  if params[:controller] != 'admin/colors' %>
+      <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
+    <% elsif params[:action] != 'new' and params[:action] != 'edit' %>
+      <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
     <% end %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
@@ -14,7 +16,7 @@
   <body class="<%= Rails.env -%>">
 
     <!-- HEADER -->
-    <div id="header">  
+    <div id="header">
       <%= yield :header %>
       <div>
         <h1><a href="/">ShopDeals</a></h1>
@@ -22,43 +24,43 @@
         <% if current_user %>
           <h3>
             <span id="user_info">Hello, <%#= link_to h(current_user.full_name), user_path(current_user) %></span>
-            <span id="logout">(<%#= link_to 'Log Out', logout_path %>)<span>
-                </h3>
-              <% end %>
-              </div>
-              <div>
-              </div>
-              </div>
-              <div>
-                <%= render :partial => "layouts/navigation" %>
-              </div>
-              <!-- HEADER end -->
+            <span id="logout">(<%#= link_to 'Log Out', logout_path %>)</span>
+          </h3>
+        <% end %>
+      </div>
+      <div>
+      </div>
+    </div>
+    <div>
+      <%= render :partial => "layouts/navigation" %>
+    </div>
+    <!-- HEADER end -->
 
-              <!-- MAIN -->
-              <div id="main">
-                <!-- content -->
-                <% if yield :sidebar %>
-                  <div class="sidebar">
-                    <%= yield :sidebar %>
-                  </div>
-                <% end %>
+    <!-- MAIN -->
+    <div id="main">
+      <!-- content -->
+      <% if yield :sidebar %>
+        <div class="sidebar">
+          <%= yield :sidebar %>
+        </div>
+      <% end %>
 
-                <div class="content">
-                  <h1><%= yield :title %></h1>
+      <div class="content">
+        <h1><%= yield :title %></h1>
 
-                  <% unless flash[:notice].blank? %>
-                    <div id="flash_notice"><%= h flash[:notice] %></div>
-                  <% end %>
+        <% unless flash[:notice].blank? %>
+          <div id="flash_notice"><%= h flash[:notice] %></div>
+        <% end %>
 
-                  <% unless flash[:error].blank? %>
-                    <div id="flash_error"><%= h flash[:error] %></div>
-                  <% end %>
+        <% unless flash[:error].blank? %>
+          <div id="flash_error"><%= h flash[:error] %></div>
+        <% end %>
 
-                  <%= yield %>
-                </div>
+        <%= yield %>
+      </div>
 
-              </div>
-              <!-- MAIN end -->
+    </div>
+    <!-- MAIN end -->
 
-              </body>
-              </html>
+  </body>
+</html>
