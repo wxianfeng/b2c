@@ -1,6 +1,6 @@
 jQuery(function ($) {
     var csrf_token = $('meta[name=csrf-token]').attr('content'),
-        csrf_param = $('meta[name=csrf-param]').attr('content');
+    csrf_param = $('meta[name=csrf-param]').attr('content');
 
     $.fn.extend({
         /**
@@ -23,12 +23,12 @@ jQuery(function ($) {
          */
         callRemote: function () {
             var el      = this,
-                method  = el.attr('method') || el.attr('data-method') || 'GET',
-                url     = el.attr('action') || el.attr('href'),
-                dataType  = el.attr('data-type')  || 'script';
+            method  = el.attr('method') || el.attr('data-method') || 'GET',
+            url     = el.attr('action') || el.attr('href'),
+            dataType  = el.attr('data-type')  || 'script';
 
             if (url === undefined) {
-              throw "No URL specified for remote call (action or href must be present).";
+                throw "No URL specified for remote call (action or href must be present).";
             } else {
                 if (el.triggerAndReturn('ajax:before')) {
                     var data = el.is('form') ? el.serializeArray() : [];
@@ -85,18 +85,18 @@ jQuery(function ($) {
 
     $('a[data-method]:not([data-remote])').live('click', function (e){
         var link = $(this),
-            href = link.attr('href'),
-            method = link.attr('data-method'),
-            form = $('<form method="post" action="'+href+'"></form>'),
-            metadata_input = '<input name="_method" value="'+method+'" type="hidden" />';
+        href = link.attr('href'),
+        method = link.attr('data-method'),
+        form = $('<form method="post" action="'+href+'"></form>'),
+        metadata_input = '<input name="_method" value="'+method+'" type="hidden" />';
 
         if (csrf_param != null && csrf_token != null) {
-          metadata_input += '<input name="'+csrf_param+'" value="'+csrf_token+'" type="hidden" />';
+            metadata_input += '<input name="'+csrf_param+'" value="'+csrf_token+'" type="hidden" />';
         }
 
         form.hide()
-            .append(metadata_input)
-            .appendTo('body');
+        .append(metadata_input)
+        .appendTo('body');
 
         e.preventDefault();
         form.submit();
@@ -113,8 +113,8 @@ jQuery(function ($) {
         $(this).find(disable_with_input_selector).each(function () {
             var input = $(this);
             input.data('enable-with', input.val())
-                .attr('value', input.attr('data-disable-with'))
-                .attr('disabled', 'disabled');
+            .attr('value', input.attr('data-disable-with'))
+            .attr('disabled', 'disabled');
         });
     };
 
@@ -125,7 +125,7 @@ jQuery(function ($) {
         $(this).find(disable_with_input_selector).each(function () {
             var input = $(this);
             input.removeAttr('disabled')
-                 .val(input.data('enable-with'));
+            .val(input.data('enable-with'));
         });
     });
 
