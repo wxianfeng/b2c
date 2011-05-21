@@ -2,10 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
     <title><%= configatron.app_name %> - <%= yield(:title) || 'Home' %></title>
-    <%= stylesheet_link_tag 'dev.css' %>
+    <%#= stylesheet_link_tag  "application"  %>
+    <%= stylesheet_link_tag  "dev"  %>
     <%= stylesheet_link_tag 'formtastic.css','jquery.crayonbox' %>
-    <%= stylesheet_link_tag 'formtastic_changes.css' %>
-    <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
+    <%= stylesheet_link_tag 'formtastic_changes.css' %>  
+    <%  if params[:controller] != 'admin/colors' %>
+      <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
+    <% elsif params[:action] != 'new' and params[:action] != 'edit' and params[:action] != 'create' %>
+      <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
+    <% end %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
@@ -13,10 +18,9 @@
 
     <!-- HEADER -->
     <div id="header">
-      <%= yield :header %>
+      <%= yield :header %>      
       <div>
         <h1><a href="/">ShopDeals</a></h1>
-
         <% if current_user %>
           <h3>
             <span id="user_info">Hello, <%= link_to h(current_user.full_name), edit_user_registration_path %></span>
@@ -37,7 +41,8 @@
       <!-- content -->
       <% if yield :sidebar %>
         <div class="sidebar">
-          <%= yield :sidebar %>
+          <%#= yield :sidebar %>
+          <%= render "/layouts/admin_sidebar"  %>
         </div>
       <% end %>
 

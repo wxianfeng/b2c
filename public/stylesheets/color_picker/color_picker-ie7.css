@@ -1,0 +1,78 @@
+#cPcolorPicker
+{
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+#cPcolor
+{
+	position: absolute;
+	height: 192px;
+	width: 192px;
+	background-color: #FF0000;
+	background-image: url(images/pickerbg.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	top: 0px;
+	left: 0px;
+}
+#cPcolorIndic
+{
+	position: absolute;
+	width: 11px;
+	height: 11px;
+	background-image: url(images/select.gif);
+}
+#cPhue
+{
+	position: absolute;
+	top: 3px;
+	left: 200px;
+	width: 18px;
+	height: 186px;
+	background-image: url(images/hue.png);
+}
+#cPhueIndic
+{
+	position:absolute;
+	background-image: url(images/color_indic.gif);
+	width: 18px;
+	height: 7px;
+}
+#cPcolorCurrent
+{
+	width: 60px;
+	height: 60px;
+	border: 2px solid #999;
+	position: absolute;
+	left: 240px;
+	top: 8px;
+}
+#cPcolorValues
+{
+	position: absolute;
+	left: 240px;
+	top: 80px;
+}
+#cPcolorValues input
+{
+	font-size: 11px;
+	padding: 1px;
+}
+#cPoldColor
+{
+	position: absolute;
+	background-color: #fff;
+	top: 50%;
+	height: 50%;
+	width: 100%;
+}
+#cPrgbR, #cPrgbG, #cPrgbB
+{
+	width: 20px;
+}
+#cPhex
+{
+	width: 40px;
+}
+

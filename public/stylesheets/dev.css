@@ -292,3 +292,39 @@ input#submit{
   border: 2px solid green;
   background-color: lightgreen;
 }
+
+
+/* MODEL VALIDATE ERROR
+-------------------------------------------------------------------- */
+.errorExplanation {
+    background-color: Pink;
+    border: 1px solid salmon;
+    font-size: 12px;
+    padding: 8px;
+    margin: 8px 13px 0px 13px; }
+.errorExplanation h2 {
+    background: salmon;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    margin: -8px;
+    padding: 5px; }
+.errorExplanation ul {
+    margin-left: 30px; }
+.errorExplanation ul li {
+    border: none;
+    font-size: 12px;
+    list-style-type: disc;
+    padding: 0px; }
+
+.fieldWithErrors input , .field_with_errors input{
+    border-bottom: 1px solid lightpink;
+    border-right: 1px solid lightpink;
+    background: pink; }
+
+/*  admin sidebar */
+.sidebar{ }
+.sidebar li{ border-bottom:1px dotted #444444;width: 130px; }
+
+/* user */
+.user{float:left;} 
