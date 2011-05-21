@@ -1,3 +1,14 @@
+<%= stylesheet_link_tag "color_picker/color_picker" %>
+<%= javascript_include_tag "color_picker/ifx","color_picker/idrop","color_picker/idrag","color_picker/iutil","color_picker/islider","color_picker/color_picker" %>
+
+<!-- compliance patch for microsoft browsers -->
+<!--[if lt IE 7]>
+		<link rel="stylesheet" href="/stylesheets/color_picker/color_picker-ie6.css" type="text/css">
+	<![endif]-->
+<!--[if gte IE 7]>
+		<link rel="stylesheet" href="/stylesheets/color_picker/color_picker-ie7.css" type="text/css">
+<![endif]-->
+
 <%= semantic_form_for([:admin,@color], :validate => true) do |form| %>
   <%= form.inputs do %>
     <%= form.input :name  , :required=>true %>
@@ -7,9 +18,24 @@
       <span class="crayon" style="background-color:#999;">&nbsp;</span>
       <p class="inline-errors"></p>
     </li>
-    <%= form.input :public %>        
+    <input type="text" id="myhexcode" value="" style="width:75px;">
+    <a href="javascript:void(0);" rel="colorpicker&objcode=myhexcode&objshow=myshowcolor&showrgb=1" style="text-decoration:none;display:inline-block;" >
+      <div id="myshowcolor" style="width:15px;height:15px;border:1px solid black">&nbsp;</div></a>
+
+
+    <%#= form.input :public %>
     <%#= form.input :created_at , :as=>:color_picker %>
   <% end %>
 
   <%= form.buttons %> or <%= link_to 'cancel', [:admin,@color] %>
 <% end %>
+
+
+<script type="text/javascript">
+  //init colorpicker:
+  $(document).ready(function(){
+    $.ColorPicker.init();
+  }
+);
+</script>
+
