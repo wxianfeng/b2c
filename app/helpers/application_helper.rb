@@ -21,4 +21,13 @@ module ApplicationHelper
     end
     raw html
   end
+  
+  def render_flash_messages
+    s = ''
+    flash.each do |k,v|
+      s << content_tag('div', v.is_a?(Array) ? raw(v.join("<br/>")) : v,:id => "flash_#{k}")
+    end
+    raw s
+  end
+  
 end

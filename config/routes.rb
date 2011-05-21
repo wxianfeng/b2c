@@ -22,6 +22,7 @@ Shopdls::Application.routes.draw do
   end
   
   namespace :admin do
+    root :to => 'colors#index'
     resources :colors
     resources :categories do
       collection {

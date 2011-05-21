@@ -1,4 +1,5 @@
 class Admin::ColorsController < ApplicationController
+  layout "admin"
 
   def index
     @colors = Color.all
