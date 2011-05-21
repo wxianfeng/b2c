@@ -20,8 +20,10 @@
   <li>
     public:<%= f.check_box :public %>
   </li>
-  <%= f.submit  %> or <%= link_to 'cancel', [:admin,@color] %>
+  <%= f.submit  %> or <%= link_to 'cancel', admin_colors_path %>
 <% end %>
+  
+  <%= params[:action] %>
 
 <script type="text/javascript">
   //init colorpicker:

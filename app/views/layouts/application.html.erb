@@ -4,12 +4,8 @@
     <title><%= configatron.app_name %> - <%= yield(:title) || 'Home' %></title>
     <%= stylesheet_link_tag 'dev.css' %>
     <%= stylesheet_link_tag 'formtastic.css','jquery.crayonbox' %>
-    <%= stylesheet_link_tag 'formtastic_changes.css' %>  
-    <%  if params[:controller] != 'admin/colors' %>
-      <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
-    <% elsif params[:action] != 'new' and params[:action] != 'edit' %>
-      <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
-    <% end %>
+    <%= stylesheet_link_tag 'formtastic_changes.css' %>
+    <%= javascript_include_tag 'jquery','rails','rails.validations' , "swfobject.js", "jquery.uploadify.v2.1.0.js" , 'jquery.crayonbox' %>  
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
