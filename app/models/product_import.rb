@@ -11,13 +11,13 @@ class ProductImport < ActiveRecord::Base
 
   aasm_initial_state :pending
 
-  aasm_state :pending, :after_enter => :import_products
+  aasm_state :pending #, :after_enter => :import_products
   aasm_state :completed
   aasm_state :processing
   aasm_state :failed
  
   # load a delayed job to handle this task
-  def import_products
+  def import
     lines = parse_csv_file(self.csv.path)
     lines.shift #comment this line out if your CSV file doesn't contain a header row
 

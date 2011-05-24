@@ -1,10 +1,10 @@
 class My::ProductImportsController < ApplicationController
   def new
-    @import = ProductImport.new
+    @product_import = ProductImport.new
   end
 
   def create
-    @import = ProductImport.new(params[:product_import])
+    @product_import = ProductImport.new(params[:product_import])
     respond_to do |format|
       if @product_import.save
         flash[:notice] = 'CSV data was successfully imported.'
