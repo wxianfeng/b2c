@@ -1,0 +1,11 @@
+<%= semantic_form_for [:my, @product_import], :validate => true, :html => {:multipart => true} do |f|%>
+  <%= f.inputs do %>
+   <%= f.input :csv, :label => "Upload a CSV file to import into the database" %>
+  <% end %>
+  
+  <%= f.buttons do %>
+    <%= f.commit_button  "Upload", :disable_with => "Uploading.............." %>
+    <%= f.cancel_link %> 
+  <% end %>
+  
+<% end %>

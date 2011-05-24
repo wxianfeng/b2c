@@ -1,5 +1,8 @@
 class My::ProductsController < ApplicationController
   
+  def index
+  end
+  
   def new
     @product = Product.new
     @colors  = Color.all

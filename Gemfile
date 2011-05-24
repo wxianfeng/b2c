@@ -17,6 +17,8 @@ gem 'countries', '0.5.2'
 gem 'babelphish', '0.4.2'
 gem 'paperclip' , '2.3.11'
 gem 'mime-types', '1.16' ,:require => 'mime/types'
+gem 'aasm', '2.2.0'
+gem 'fastercsv', '1.5.4'
 
 group :test, :development do
   gem 'mongrel', '1.2.0.pre2'  

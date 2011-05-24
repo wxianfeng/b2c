@@ -17,6 +17,7 @@ Shopdls::Application.routes.draw do
   
   namespace :my do
     resources :products
+    resources :product_imports
   end
   
   namespace :admin do
