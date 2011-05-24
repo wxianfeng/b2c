@@ -16,7 +16,7 @@
   <%= f.input :height  %>
   <%= f.input :weight  %>
   <%= f.input :quantity  %>
-  <%= f.select :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %>    
+  <%= f.input :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %>    
   <%= f.input :seller_price  %>
   <%= f.input :description , :required => true %>
 
@@ -32,9 +32,17 @@
         <td><%= radio_button_tag "shipping[#{sc.name}]" , "custom" %> custom</td><td style="display:none;"><%= text_field_tag "#{sc.name}[price]" %></td></tr>
     <% end %>
   </table>
-  
+   
+   Select Colors:
+   <div>
+    <% @colors.each do |color| %>
+      <div><%= check_box_tag "product[color_ids][]", color %><span class="crayon" style="background-color:<%= "##{color.value}" %>">&nbsp;</span></div>
+    <% end %>
+   </div>
+    
+    
   <li>
-    Pictures:
+    <label class="label">Pictures:</label>
     <%= file_field_tag :picture %>
   </li>
   <div id="uploads"></div>   

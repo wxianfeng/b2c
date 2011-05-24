@@ -66,3 +66,12 @@ form abbr{color:red;font-size:1.2em;margin-left:.2em}
 #oauth fieldset a img{margin:0 0 4px}
 #oauth fieldset a span{display:block;text-align:center}
 #oauth fieldset legend{position:absolute;top:23px;left:34px}
+
+/*COLOR PALETTE*/
+.color_palette {
+	cursor: pointer;
+	float: left;
+	min-height: 17px;
+	min-width: 17px;
+	border: 1px solid #222;
+}

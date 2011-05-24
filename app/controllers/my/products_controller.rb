@@ -2,6 +2,7 @@ class My::ProductsController < ApplicationController
   
   def new
     @product = Product.new
+    @colors  = Color.all
     @product_draft = ProductDraft.create   
   end
   
