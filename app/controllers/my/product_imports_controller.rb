@@ -1,14 +1,14 @@
-class ProductImportsController < ApplicationController
+class My::ProductImportsController < ApplicationController
   def new
-    @import = Import.new
+    @import = ProductImport.new
   end
 
   def create
-    @import = Import.new(params[:import])
+    @import = ProductImport.new(params[:product_import])
     respond_to do |format|
-      if @import.save!
+      if @product_import.save
         flash[:notice] = 'CSV data was successfully imported.'
-        format.html { redirect_to(@import) }
+        format.html { redirect_to(@product_import) }
       else
         flash[:error] = 'CSV data import failed.'
         format.html { render :action => "new" }
@@ -17,6 +17,6 @@ class ProductImportsController < ApplicationController
   end
 
   def show
-    @import = Import.find(params[:id])
+    @product_import = ProductImport.find(params[:id])
   end
 end
