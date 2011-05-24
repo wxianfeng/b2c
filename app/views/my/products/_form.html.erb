@@ -1,0 +1,42 @@
+<%= hidden_field_tag :category_name %>
+<%= f.inputs do %>   
+
+  Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>
+  <div id="select_category">
+    <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "name", "name"), :multiple => true , :style=>'height:250px;' %>
+    <%= select_tag "second_category" , "", :multiple => true , :style=>'height:250px;' %>
+    <%= select_tag "third_category" , "", :multiple => true , :style=>'height:250px;'  %>
+    <%= select_tag "four_category" , "", :multiple => true , :style=>'height:250px;'  %>
+    <%= link_to "OK" , "javascript:;" , :id=>"ok_category" %>
+  </div>
+  
+  <%= f.input :name , :required => true %>
+  <%= f.input :length  %>
+  <%= f.input :width  %>
+  <%= f.input :height  %>
+  <%= f.input :weight  %>
+  <%= f.input :quantity  %>
+  <%= f.select :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %>    
+  <%= f.input :seller_price  %>
+  <%= f.input :description , :required => true %>
+
+  <li class="string required">
+    <label>Tags:</label>
+    <%= text_field_tag :tags %> (split by ,)
+  </li>
+  shipping:
+  <table>
+    <tr><th>method</th><th cospan="4">price</th></tr>
+    <% ShippingCategory.all.each do |sc| %>
+      <tr><td><%= sc.name %></td><td><%= radio_button_tag "shipping[#{sc.name}]" , "free" , true %> free </td><td><%= radio_button_tag "shipping[#{sc.name}]" , "not_support" %> not support</td>
+        <td><%= radio_button_tag "shipping[#{sc.name}]" , "custom" %> custom</td><td style="display:none;"><%= text_field_tag "#{sc.name}[price]" %></td></tr>
+    <% end %>
+  </table>
+  
+  <li>
+    Pictures:
+    <%= file_field_tag :picture %>
+  </li>
+  <div id="uploads"></div>   
+    
+<% end %>
