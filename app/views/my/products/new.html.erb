@@ -1,11 +1,3 @@
-<%-
-@colors  = Color.all
-@product_draft = ProductDraft.create
--%>
-
-<%= stylesheet_link_tag 'jquery.fancybox-1.3.4' %>
-<%= javascript_include_tag "jquery.fancybox-1.3.4" %>
-
 <% title "List a Product" %>
 
 <%= error_messages_for @product  %>
