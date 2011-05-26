@@ -6,11 +6,10 @@ class Product < ActiveRecord::Base
   has_many :colors, :through => :product_colors
   has_many :product_sizes
   
-  has_many :pictures , :as=>:assetable , :class_name => "Upload::Asset"
+  has_many :pictures , :as=>:assetable , :class_name => "Upload::Asset"  
   
-  # validates :category_id , :presence => true
-  validates :name , :presence => true
-  validates :description , :presence => true
+  validates :name , :presence => { :message=>"name cant be blank" }
+  validates :description , :presence => { :message=>"description cant be blank" }
   
   
   PRODUCT_STATUS = ['ON SALE', 'OFF SALE']

@@ -1,53 +1,54 @@
 form.formtastic {
-  color:#444;
-  text-shadow: rgba(255, 255, 255, 0.796875) 0px 1px 0px;
-  text-transform:capitalize;
-  font-size:16px;
-  font-weight:bold;
+    color:#444;
+    text-shadow: rgba(255, 255, 255, 0.796875) 0px 1px 0px;
+    text-transform:capitalize;
+    font-size:16px;
+    font-weight:bold;
 }
 form.formtastic fieldset ol li p.inline-hints { 
-  margin-left:0px;
-  color:#333; 
+    margin-left:0px;
+    color:#333; 
 }
 form.formtastic fieldset ol li p.inline-errors { 
-  margin-left:0px;
-  font-size:19px;
-  color:red !important;
+    margin-left:0px;
+    font-size:19px;
+    color:red !important;
 }
 form.formtastic fieldset {
-  font-family: Lucida Grande, Lucida Sans;
-  display: block;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+    font-family: Lucida Grande, Lucida Sans;
+    display: block;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
 }
 
 form.formtastic fieldset legend span {
-  font-weight:bold;
-  vertical-align: baseline;
-  font-weight: 700;
-  font-size: 1.2em;
-  line-height: 1em;
-  margin-bottom:5px;
+    font-weight:bold;
+    vertical-align: baseline;
+    font-weight: 700;
+    font-size: 1.2em;
+    line-height: 1em;
+    margin-bottom:5px;
 }
 form.formtastic fieldset.inputs ol li {
-  border-bottom: none;
-  }
+    border-bottom: none;
+}
 form.formtastic fieldset.inputs li.hidden {
-  display: none;
-  }
+    display: none;
+}
 
 form.formtastic fieldset.inputs legend,
 form.formtastic fieldset.inputs ol li.radio fieldset legend {
-  display: block-inline;
-  float: left;
-  margin-bottom: 8px;
-  width:100%;
+    display: block-inline;
+    float: left;
+    margin-bottom: 8px;
+    width:100%;
 }
 
 form.formtastic > fieldset.inputs > ol > li > a {
-  display: block;
-  }
+    display: block;
+}
+
 
 form.formtastic fieldset.inputs ol li.string input,
 form.formtastic fieldset.inputs ol li.datetime input,
@@ -55,11 +56,12 @@ form.formtastic fieldset.inputs ol li.password input,
 form.formtastic fieldset.inputs ol li.numeric input,
 form.formtastic fieldset.inputs ol li.email input,
 form.search li.string input {
-  border: 1px solid rgba(0, 0, 0, 0.398438);
-  padding: 8px;
-  width:60%;
-  }
-	form.formtastic > fieldset.inputs > ol > li {
-	display: block;
-	padding: 8px 10px 6px 10px;
-	}
+    border: 1px solid rgba(0, 0, 0, 0.398438);
+    padding: 8px;
+    width:55%;
+}
+
+form.formtastic > fieldset.inputs > ol > li {
+    display: block;
+    padding: 8px 10px 6px 10px;
+}
