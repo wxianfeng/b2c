@@ -9,12 +9,7 @@ class My::ProductsController < ApplicationController
   end
   
   def create
-    if params[:category_name].blank?
-      flash[:error] = "pls select a category"
-      redirect_to :action=> :new  and return 
-    end
-    category = Category.find_by_name(params[:category_name])
-    @product = Product.new(params[:product].merge(:category_id=>category.id))
+    @product = Product.new(params[:product])
     tags = params[:tags].split(/,/).uniq
     tags.each do |tag|
       @product.tags << Tag.new({:name=>tag})

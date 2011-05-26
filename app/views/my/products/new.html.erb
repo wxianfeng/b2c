@@ -5,7 +5,7 @@
 
   <%= render :partial => "form", :locals => {:f => f} %>  
   <%= f.buttons do %>
-    <%= f.submit "Create" , :type => "button" , :onclick => "submitForm();return false;" %>
+    <%= f.submit "Create"  %>
     <%= f.cancel_link %> 
   <% end %>
 
@@ -48,7 +48,7 @@
       $("#select_category").toggle();
     })
     
-    var allCategories = JSON.parse('<%=raw Category.all_categories.to_json %>')    
+    var allCategories = JSON.parse('<%=raw Category.all_categories.to_json %>')
     
     $("#first_category,#second_category,#third_category").change(function(){
       var $this = $(this);
@@ -134,16 +134,6 @@
         $td.hide();
     }) 
 
-  }); 
-  
-  function setCategoryName(){
-    var $c = $("[id*='_category']").find("option:selected").eq(-1);
-    $("#category_name").val($c.val());
-  }
-    
-  function submitForm(){
-    setCategoryName();
-    $("form").submit();    
-  }
+  });
   
 </script>

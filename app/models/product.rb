@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
   validates :description , :presence => { :message=>"description cant be blank" }
   validates :public , :presence=>{:message=>"status cant be blank"}
   validates :seller_price , :presence=>{:message=>"seller price cant be blank" }
+  validates :category_id , :presence=>{:message=>"category cant be blank" }
   
   
   PRODUCT_STATUS = ['ON SALE', 'OFF SALE']
