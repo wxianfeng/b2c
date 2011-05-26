@@ -1,3 +1,12 @@
+/*!
+ * Rails 3 Client Side Validations - v3.0.4
+ * https://github.com/bcardarlela/client_side_validations
+ *
+ * Copyright (c) 2011 Brian Cardarella
+ * Licensed under the MIT license
+ * http://www.opensource.org/licenses/mit-license.php
+ */
+
 (function($) {
   $.fn.validate = function() {
     return this.filter('form[data-validate]').each(function() {
@@ -6,8 +15,8 @@
 
       // Set up the events for the form
       form
-        .submit(function() { return form.isValid(); })
-        .bind('ajax:beforeSend',      function()          { return form.isValid(); })
+        .submit(function() { return form.isValid(settings.validators); })
+        .bind('ajax:beforeSend',      function()          { return form.isValid(settings.validators); })
         // Callbacks
         .bind('form:validate:after',  function(eventData) { clientSideValidations.callbacks.form.after( form, eventData); })
         .bind('form:validate:before', function(eventData) { clientSideValidations.callbacks.form.before(form, eventData); })
@@ -15,8 +24,8 @@
         .bind('form:validate:pass',   function(eventData) { clientSideValidations.callbacks.form.pass(  form, eventData); })
 
         // Set up the events for each validatable form element
-        .find('[data-validators]:input')
-          .live('focusout',                function()          { $(this).isValid(); })
+        .find('[data-validate]:input')
+          .live('focusout',                function()          { $(this).isValid(settings.validators); })
           .live('change',                  function()          { $(this).data('changed', true); })
           // Callbacks
           .live('element:validate:after',  function(eventData) { clientSideValidations.callbacks.element.after( $(this), eventData); })
@@ -32,20 +41,22 @@
               removeError(element);
             }, eventData) })
         // Checkboxes - Live events don't support filter
-        .end().find('[data-validators]:checkbox')
-          .live('click', function() { $(this).isValid(); })
+        .end().find('[data-validate]:checkbox')
+          .live('click', function() { $(this).isValid(settings.validators); })
         // Inputs for confirmations
         .end().find('[id*=_confirmation]').each(function() {
           var confirmationElement = $(this),
-              element = form.find('#' + this.id.match(/(.+)_confirmation/)[1] + '[data-validators]:input');
+              element = form.find('#' + this.id.match(/(.+)_confirmation/)[1] + '[data-validate]:input');
 
-          $('#' + confirmationElement.attr('id'))
-            .live('focusout', function() {
-              element.data('changed', true).isValid();
-            })
-            .live('keyup', function() {
-              element.data('changed', true).isValid();
-            })
+          if (element[0]) {
+            $('#' + confirmationElement.attr('id'))
+              .live('focusout', function() {
+                element.data('changed', true).isValid(settings.validators);
+              })
+              .live('keyup', function() {
+                element.data('changed', true).isValid(settings.validators);
+              })
+          }
         });
 
       var addError = function(element, message) {
@@ -58,19 +69,19 @@
     });
   }
 
-  $.fn.isValid = function() {
+  $.fn.isValid = function(validators) {
     if ($(this[0]).is('form')) {
-      return validateForm($(this[0]));
+      return validateForm($(this[0]), validators);
     } else {
-      return validateElement($(this[0]));
+      return validateElement($(this[0]), validators[this[0].name]);
     }
   }
 
-  var validateForm = function(form) {
+  var validateForm = function(form, validators) {
     var valid = true;
 
-    form.trigger('form:validate:before').find('[data-validators]:input').each(function() {
-      if (!validateElement($(this))) { valid = false; }
+    form.trigger('form:validate:before').find('[data-validate]:input').each(function() {
+      if (!$(this).isValid(validators)) { valid = false; }
     });
 
     if (valid) {
@@ -83,12 +94,11 @@
     return valid;
   }
 
-  var validateElement = function(element) {
+  var validateElement = function(element, validators) {
     element.trigger('element:validate:before');
 
     if (element.data('changed') !== false) {
-      var valid = true,
-          validators = new Function("return " + element.attr('data-validators'))();
+      var valid = true;
       element.data('changed', false);
 
       // Because 'length' is defined on the list of validators we cannot call jQuery.each on
@@ -163,7 +173,7 @@ var clientSideValidations = {
           equal_to: '==', less_than: '<', less_than_or_equal_to: '<=' }
 
         for (var check in CHECKS) {
-          if (options[check] && !(new Function("return " + element.val() + CHECKS[check] + options[check])())) {
+          if (options[check] != undefined && !(new Function("return " + element.val() + CHECKS[check] + options[check])())) {
             return options.messages[check];
           }
         }
@@ -302,9 +312,11 @@ var clientSideValidations = {
               labelErrorField = jQuery(settings.label_tag),
               label = jQuery('label[for="' + element.attr('id') + '"]:not(.message)');
 
+          if (element.attr('autofocus')) { element.attr('autofocus', false) };
           element.before(inputErrorField);
           inputErrorField.find('span#input_tag').replaceWith(element);
           inputErrorField.find('label.message').attr('for', element.attr('id'));
+          labelErrorField.find('label.message').attr('for', element.attr('id'));
           label.replaceWith(labelErrorField);
           labelErrorField.find('label#label_tag').replaceWith(label);
         }
@@ -360,7 +372,14 @@ var clientSideValidations = {
         var errorElement = wrapper.find('p.' + settings.inline_error_class);
         errorElement.remove();
       }
-
+    },
+    'NestedForm::Builder': {
+      add: function(element, settings, message) {
+        clientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'].add(element, settings, message);
+      },
+      remove: function(element, settings, message) {
+        clientSideValidations.formBuilders['ActionView::Helpers::FormBuilder'].remove(element, settings, message);
+      }
     }
   },
   callbacks: {
