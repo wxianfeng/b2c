@@ -5,8 +5,7 @@
 
 <%= semantic_form_for [:my,@product] , :validate => true  do |f| %>
 
-  <%= render :partial => "form", :locals => {:f => f} %>
-  
+  <%= render :partial => "form", :locals => {:f => f} %>  
   <%= f.buttons do %>
     <%= f.submit "Create" , :type => "button" , :onclick => "submitForm();return false;" %>
     <%= f.cancel_link %> 
@@ -42,10 +41,10 @@
       }
     });
 	
-    $('#product_submit').click(function(event){
+    // $('#product_submit').click(function(event){
       // event.preventDefault(); 
-      $('#picture').uploadifyUpload(); 
-    });
+      // $('#picture').uploadifyUpload(); 
+    // });
     
     $("#edit_category").click(function(){
       $("#select_category").toggle();
@@ -145,8 +144,10 @@
   }
     
   function submitForm(){
+    alert("xx");
     setCategoryName();
     $("form").submit();
+    alert("yy");
   }
   
 </script>

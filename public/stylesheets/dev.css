@@ -328,3 +328,5 @@ input#submit{
 
 /* user */
 .user{float:left;} 
+
+.select_category select { height: 250px;width: 150px;  }

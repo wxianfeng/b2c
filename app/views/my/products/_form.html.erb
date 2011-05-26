@@ -1,16 +1,17 @@
-<%= hidden_field_tag :category_name %>
+  <%= hidden_field_tag :category_name %>
 <%= f.inputs do %>   
 
-  Category:<span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category"%>
-  <div id="select_category">
-    <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "name", "name"), :multiple => true , :style=>'height:250px;' %>
-    <%= select_tag "second_category" , "", :multiple => true , :style=>'height:250px;' %>
-    <%= select_tag "third_category" , "", :multiple => true , :style=>'height:250px;'  %>
-    <%= select_tag "four_category" , "", :multiple => true , :style=>'height:250px;'  %>
+  <p><label>Category:</label><span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category" %>
+  <div id="select_category" class="select_category">
+    <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "name", "name"), :multiple => true  %>
+    <%= select_tag "second_category" , "", :multiple => true   %>
+    <%= select_tag "third_category" , "", :multiple => true  %>
+    <%= select_tag "four_category" , "", :multiple => true  %>
     <%= link_to "OK" , "javascript:;" , :id=>"ok_category" %>
   </div>
+  </p>
   
-  <%= f.input :name , :required => true %>
+  <%= f.input :name  %>
   <%= f.input :length  %>
   <%= f.input :width  %>
   <%= f.input :height  %>
@@ -18,7 +19,7 @@
   <%= f.input :quantity  %>
   <%= f.input :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %>    
   <%= f.input :seller_price  %>
-  <%= f.input :description , :required => true %>
+  <%= f.input :description  %>
 
   <li class="string required">
     <label>Tags:</label>

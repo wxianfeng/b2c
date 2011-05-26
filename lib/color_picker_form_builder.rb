@@ -1,6 +1,12 @@
 # https://gist.github.com/876650
 # http://diminishing.org/extending-formtastic-with-a-sprinkle-of-jquery
 
+##
+# Usage:
+#   <%= semantic_form_for @product  do |f| %>
+#      <%= f.input :color , :as=>:color_picker %>
+#   <% end %>
+#
 class ColorPickerFormBuilder <  Formtastic::SemanticFormBuilder
   def color_picker_input(method, options={})
     
