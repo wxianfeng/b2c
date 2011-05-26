@@ -18,10 +18,16 @@
         <h1><a href="/">ShopDeals</a></h1>
 
         <% if current_user %>
-          <h3>
+          <div>
             <span id="user_info">Hello, <%= link_to h(current_user.full_name), edit_user_registration_path %></span>
             <span id="logout">(<%= link_to 'Log Out', destroy_user_session_path %>)</span>
-          </h3>
+          </div>
+        <% else %>
+         <div>
+           <span id="user_info"><%= link_to 'Register', new_user_registration_url %></span>
+           <span id="logout"><%= link_to 'Sign Up', new_user_session_url %></span>
+         </div>
+         
         <% end %>
       </div>
       <div>

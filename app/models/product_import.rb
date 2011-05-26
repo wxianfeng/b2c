@@ -4,55 +4,42 @@ class ProductImport < ActiveRecord::Base
   has_attached_file :csv
   validates_attachment_presence :csv
   validates_attachment_content_type :csv, :content_type => ['text/csv','text/comma-separated-values','text/csv','application/csv','application/excel','application/vnd.ms-excel','application/vnd.msexcel','text/anytext','text/plain']
-
+    
+  before_validation :validate_csv_file, :on => :create
+    
+  MAXIMUM_IMPORT = 1
+  
   include AASM
 
   aasm_column :status # defaults to aasm_state
 
   aasm_initial_state :pending
 
-  aasm_state :pending #, :after_enter => :import_products
+  aasm_state :pending, :after_enter => :import
   aasm_state :completed
   aasm_state :processing
   aasm_state :failed
- 
-  # load a delayed job to handle this task
+
   def import
-    lines = parse_csv_file(self.csv.path)
-    lines.shift #comment this line out if your CSV file doesn't contain a header row
-
-    if lines.sizes > 0
-      lines.each do |line|
-        @product_draft = ProductDraft.new
-        @product_draft.title        = line[0]
-        @product_draft.description  = line[1]
-        @product_draft.seller_price = line[2]
-        @product_draft.quantity     = line[3]
-        @product_draft.image_urls   = line[4] #urls of images
-        @product_draft.category_id  = line[5] #give users a list of category ids
-        @product_draft.tags         = line[6] #comma separatad tags
-        @product_draft.condition    = line[7] #new, used or refurbished
-        @product_draft.shipping     = line[8] #comma separate country code with price
-
-        if @product_draft.save
-          true
-        else
-          errors.add_to_base(:base, "something crazy happened")
-        end
-      end
-    end
-
+    Resque.enqueue(::ProductImportJob, self.id)
   end
+  
+  def self.pending
+   scoped(:conditions => {:status => "pending"})  
+  end
+  
+  def validate_csv_file
+    csv_text = self.csv.queued_for_write[:original].read.strip
+    csv_text.gsub(/\n?\r\n?/,"\n")
+    if csv_text.blank? then raise ArgumentError, "CSV file cannot be blank." end
+    if csv_text =~/^,+$/ then raise ArgumentError, "CSV file has a line of commas without any data." end
+    if csv_text =~/\t/ then raise ArgumentError, "CSV file has a tab in it. Verify you are uploading comma separated values, not tab separated values." end
+    
+    require 'faster_csv'
+    rows = FasterCSV.parse(csv_text) #.shifted
 
-  private
-
-    def parse_csv_file(path_to_csv)
-      lines = []
-      require 'fastercsv'
-      FasterCSV.foreach(path_to_csv) do |row|
-        lines << row
-      end
-      lines
-    end
-
+    if rows.nil? then raise ArgumentError, "CSV file has no rows." end
+    if rows.size.eql?(0) then raise ArgumentError, "CSV file has a header row but no data rows." end
+  end
+  
 end

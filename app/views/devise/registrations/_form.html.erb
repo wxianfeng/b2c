@@ -1,0 +1,18 @@
+<%= f.inputs do %>
+  
+  <%= f.input :email, :required => true     %>
+  <% if resource.password_required? %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+  <% end %>
+
+  <%= f.input :first_name, :required => true %>
+  <%= f.input :last_name %>
+  <%= f.input :address %>
+  <%= f.input :city %>
+  <%= f.input :state %>
+  <%= f.input :postal_code %>
+  <%= f.input :country %>
+  <%= f.input :phone_number, :label => "Phone Number" %>
+  
+<% end %>
