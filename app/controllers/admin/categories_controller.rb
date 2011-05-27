@@ -1,15 +1,15 @@
 class Admin::CategoriesController < ApplicationController
   layout "admin"
   before_filter :find_category , :only=>[:show,:edit,:update,:destroy]
-  
+
   def index
-   @categories = Category.all
+    @categories = Category.all
   end
-  
+
   def new
     @category = Category.new
   end
-  
+
   def create
     @category = Category.new(params[:category])
     if @category.save
@@ -18,11 +18,11 @@ class Admin::CategoriesController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @category = Category.find(params[:id])
-  end  
-  
+  end
+
   def update
     if @category.update_attributes(params[:category])
       redirect_to admin_category_path(@category) , :notice => "Update Success"
@@ -30,7 +30,7 @@ class Admin::CategoriesController < ApplicationController
       redirect_to :back , :notice=>"ERROR"
     end
   end
-  
+
   def destroy
     if @category.destroy
       redirect_to admin_categories_path , :notice=>"Delete Success"
@@ -38,17 +38,20 @@ class Admin::CategoriesController < ApplicationController
       redirect_to :back , :notice=>"ERROR"
     end
   end
-  
+
   def get_category
-    category_name = params[:name]
-    category = Category.find_by_name(category_name)
-    names = category.parents(true).reverse.map(&:name).join("->")
-    render :json => {"category_id"=>category.id,"names"=>names}.to_json
+    category = Category.find_by_id(params[:category_id])
+    children = category.children
+    data = {}
+    children.each{|c| data[c.id] = c.name }
+    respond_to do |f|
+      f.js { render :json => data.to_json }
+    end
   end
-  
-  protected  
-  def find_category
-    @category = Category.find_by_id(params[:id])
-  end
-  
+
+  protected
+    def find_category
+      @category = Category.find_by_id(params[:id])
+    end
+
 end

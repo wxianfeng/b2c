@@ -25,7 +25,8 @@ Shopdls::Application.routes.draw do
     resources :colors
     resources :categories do
       collection {
-        post :get_category
+        # post :get_category
+          get  :get_category
       }
     end
   end

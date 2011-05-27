@@ -15,4 +15,6 @@ class Product < ActiveRecord::Base
   validates :category_id,   :presence => { :message => "Product category cannot be blank"}
   
   PRODUCT_STATUS = ['ON SALE', 'OFF SALE']
+  
+  attr_accessor :parent_category_id
 end

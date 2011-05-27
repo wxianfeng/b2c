@@ -1,15 +1,8 @@
-<%= hidden_field_tag :category_name %>
 <%= f.inputs do %>   
 
-  <p><label>Category:</label><span id="show_category"></span><%= link_to "edit_category" , "javascript:;" , :id=>"edit_category" %>
-  <div id="select_category" class="select_category">
-    <%= select_tag "first_category" , options_from_collection_for_select(Category.first_category, "name", "name"), :multiple => true  %>
-    <%= select_tag "second_category" , "", :multiple => true   %>
-    <%= select_tag "third_category" , "", :multiple => true  %>
-    <%= select_tag "four_category" , "", :multiple => true  %>
-    <%= link_to "OK" , "javascript:;" , :id=>"ok_category" %>
+  <div id="select_category" class="select_category1">
+    <%= f.input :parent_category_id, :collection => Category.roots, :as => :select, :input_html => {:class => "select_category", :multiple => true} %>
   </div>
-  </p>
   
   <%= f.input :name  ,  :input_html => {  :size => 10 } %>
   <%= f.input :length  %>
@@ -20,7 +13,8 @@
   <%= f.input :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %>    
   <%= f.input :seller_price  %>
   <%= f.input :description  %>
-
+  <%= f.input :category_id, :as => :hidden %>
+  
   <li class="string required">
     <label>Tags:</label>
     <%= text_field_tag :tags %> (split by ,)
