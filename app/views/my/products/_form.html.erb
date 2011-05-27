@@ -3,12 +3,8 @@
   <div id="select_category" class="select_category1">
     <%= f.input :parent_category_id, :collection => Category.roots, :as => :select, :input_html => {:class => "select_category", :multiple => true} %>
   </div>
-  
+
   <%= f.input :name  ,  :input_html => {  :size => 10 } %>
-  <%= f.input :length  %>
-  <%= f.input :width  %>
-  <%= f.input :height  %>
-  <%= f.input :weight  %>
   <%= f.input :quantity  %>
   <%= f.input :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %>    
   <%= f.input :seller_price  %>
@@ -19,7 +15,7 @@
     <label>Tags:</label>
     <%= text_field_tag :tags %> (split by ,)
   </li>
-  
+
   shipping:
   <table>
     <tr><th>method</th><th cospan="4">price</th></tr>
@@ -28,19 +24,19 @@
         <td><%= radio_button_tag "shipping[#{sc.name}]" , "custom" %> custom</td><td style="display:none;"><%= text_field_tag "#{sc.name}[price]" %></td></tr>
     <% end %>
   </table>
-   
-   Select Colors:
-   <div>
+
+  Select Colors:
+  <div>
     <% @colors.each do |color| %>
       <div><%= check_box_tag "product[color_ids][]", color %><span class="crayon" style="background-color:<%= "##{color.value}" %>">&nbsp;</span></div>
     <% end %>
-   </div>
-    
-    
+  </div>
+
+
   <li>
     <label class="label">Pictures:</label>
     <%= file_field_tag :picture %>
   </li>
   <div id="uploads"></div>   
-    
+
 <% end %>

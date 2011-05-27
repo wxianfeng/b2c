@@ -10,9 +10,7 @@ class My::ProductsController < ApplicationController
   end
   
   def create
-    category = Category.find_by_name(params[:category_name])
     @product = Product.new(params[:product])
-    @product.category_id = category.id
     tags = params[:tags].split(/,/).uniq
     
     tags.each do |tag|
