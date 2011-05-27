@@ -9,7 +9,7 @@
   <b>Parent Category:</b>
   <%= @category.parent.try(:name) %>
 </p>
-
+<%= @category.parents %>
 <p>
   <b>Public:</b>
   <%= @category.public %>

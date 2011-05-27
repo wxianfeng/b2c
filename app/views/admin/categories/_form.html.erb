@@ -1,19 +1,5 @@
-<% parent = Category.find_by_id(params[:parent_id]) %>
-
-<%= semantic_form_for([:admin,@category], :validate => true) do |form| %>
-  <%= form.inputs do %>
-    <%= hidden_field_tag "category[parent_id]"  , params[:parent_id] %>
-    <li class="string optional">parent category:<%= parent.present? ? parent.try(:name) : "NONE" %></li>
-    <%= form.input :name  , :required => true %>   
-    <%= form.input :public  %>
-    <% if params[:parent_id].nil? %>
-      <%= form.input :show_order %>
-    <% end %>
-  <% end %>
-
-  <%= form.buttons do %>
-    <%= form.commit_button "Create" %>
-    <%= form.cancel_link    %> 
-  <% end %>
-
+<%= f.inputs do %>
+  <%= f.input :ancestry, :collection => Category.all, :as => :select %>
+  <%= f.input :name %>   
+  <%= f.input :public  %>
 <% end %>

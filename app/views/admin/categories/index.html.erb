@@ -1,34 +1,25 @@
-<%= stylesheet_link_tag "google/orgchart" %>
-<%= javascript_include_tag "google/jsapi.js" %>
-<%= javascript_include_tag "google/orgchart.js" %>
-
 <% title 'Listing categories' %>
 
-<table>
-  <thead><tr><th>name</th><th>parent_category</th><th>is_public</th><th>show_order</th></tr></thead>
+<%= link_to 'New Category', new_admin_category_url %>
+
+<table class="data">
+  <thead>
+     <th>Name</th>
+     <th>Full Path</th>
+     <th>Actions</th>
+  </thead>
   <tbody>
-    <% @categories.each_with_index do |c,index| %>
-      <tr class="<%= index%2==0 ? "odd" :"even" %>">
-        <td><%= link_to c.name , admin_category_path(c) %></td>
-        <td><%= c.parent.try(:name) %></td>
-        <td><%= c.public %></td>
-        <td><%= c.show_order %></td>      
-        <td class="actions edit_link"><%= link_to "Edit" , edit_admin_category_path(c) %> | </td> 
-        <td class="actions destroy_link"><%= link_to "Delete" , admin_category_path(c),:method=>:delete ,:confirm=>"sure?"  %> | </td> 
-        <td class="actions show_link"><%= link_to "sub_categories" ,admin_categories_path(:parent_id=>c.id) %></td>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.full_path %></td>
+        <td>
+          <ul>
+            <li><%= link_to 'Add Subcategory', new_admin_category_url(:category => {:ancestry => category.id}) %></li>
+            <li><%= link_to 'edit', edit_admin_category_url(category) %></li>
+           </ul>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<p>
-  <% if params[:parent_id] %>
-    <%= link_to 'New Sub Category', new_admin_category_path(:parent_id=>params[:parent_id]), :class => 'button' %>
-  <% else %>
-    <%= link_to 'New First Category', new_admin_category_path, :class => 'button' %>
-  <% end %>  
-</p>
-
-<div id='chart'></div>
-<%=raw @chart.render('chart') %>
-

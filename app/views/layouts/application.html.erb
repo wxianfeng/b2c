@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
   <head>
-    <title><%= configatron.app_name %> - <%= yield(:title) || 'Home' %></title>
+    <title><%= configatron.app_name %> - <%= yield(:title) || 'Shopdls.com' %></title>
     <%= stylesheet_link_tag 'dev.css' %>
     <%= stylesheet_link_tag 'formtastic.css' %>
     <%= stylesheet_link_tag 'jquery.crayonbox' %>
@@ -28,7 +28,7 @@
         <% else %>
          <div>
            <span id="user_info"><%= link_to 'Register', new_user_registration_url %></span>
-           <span id="logout"><%= link_to 'Sign Up', new_user_session_url %></span>
+           <span id="logout"><%= link_to 'Login', new_user_session_url %></span>
          </div>
          
         <% end %>
