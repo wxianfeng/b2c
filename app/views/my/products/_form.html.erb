@@ -1,40 +1,40 @@
-<%= f.inputs do %>   
+<%= f.inputs  "Item Details" do %>   
 
   <div id="select_category" class="select_category1">
-    <%= f.input :parent_category_id, :collection => Category.roots, :as => :select, :input_html => {:class => "select_category", :multiple => true} %>
+    <%= f.input :parent_category_id, :collection => Category.roots, :as => :select, :input_html => {:class => "select_category"}, :label => "Category" %>
   </div>
 
-  <%= f.input :name  ,  :input_html => {  :size => 10 } %>
+  <%= f.input :name,  :label => "Item Title", :hint => "Title should be less than 60 characters." %>
+  <%= f.input :description, :hint => "Provide More information about this item  " %>
+  
   <%= f.input :quantity  %>
-  <%= f.input :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %>    
-  <%= f.input :seller_price  %>
-  <%= f.input :description  %>
+  <%= f.input :seller_price, :label => "Set a price for your item" %>
   <%= f.input :category_id, :as => :hidden %>
   
   <li class="string required">
-    <label>Tags:</label>
+    <label>Product Keywords Tags. Separate tags by ,</label>
     <%= text_field_tag :tags %> (split by ,)
   </li>
+  
+  <%= f.input :color_ids, :collection => @colors, :as => :check_boxes, :label => "Colors Available" %>
+  
+  <%= f.input :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %> 
+     
+<% end %>
 
-  shipping:
-  <table>
-    <tr><th>method</th><th cospan="4">price</th></tr>
-    <% ShippingCategory.all.each do |sc| %>
-      <tr><td><%= sc.name %></td><td><%= radio_button_tag "shipping[#{sc.name}]" , "free" , true %> free </td><td><%= radio_button_tag "shipping[#{sc.name}]" , "not_support" %> not support</td>
-        <td><%= radio_button_tag "shipping[#{sc.name}]" , "custom" %> custom</td><td style="display:none;"><%= text_field_tag "#{sc.name}[price]" %></td></tr>
-    <% end %>
-  </table>
+<%= f.inputs "Shipping Options" do %>
+   <% ShippingPrice::TOP_SHIPPING_COUNTRIES.each do |country| %>
+    <li class="string shipping">
+      <label><%= country  %></label>
+      $<%= text_field_tag "shipping_price[#{country}]" %>
+      <%= link_to 'remove', '#', :class => "shipping shipping_price#{country}" %>
+    </li>
+   <% end %>
+<% end %>
 
-  Select Colors:
-  <div>
-    <% @colors.each do |color| %>
-      <div><%= check_box_tag "product[color_ids][]", color %><span class="crayon" style="background-color:<%= "##{color.value}" %>">&nbsp;</span></div>
-    <% end %>
-  </div>
-
-
+<%= f.inputs "Add photos of your item" do %>
   <li>
-    <label class="label">Pictures:</label>
+    <label class="label">Add photos of your item</label>
     <%= file_field_tag :picture %>
   </li>
   <div id="uploads"></div>   

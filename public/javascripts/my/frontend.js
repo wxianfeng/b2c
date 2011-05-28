@@ -1,6 +1,14 @@
 (function($) {
     $(document).ready(function() {
-	    // Selecting product Categories
+        // remove shipping option
+        $('a.shipping').live('click',
+        function(event) {
+            event.preventDefault();
+            $(this).parents('li').remove();
+
+        });
+
+        // Selecting product Categories
         $("select.select_category").live('change',
         function(event) {
 
@@ -32,7 +40,7 @@
 
                     var LastSelect = $('div#select_category');
 
-                    $(LastSelect).append('<select id="category_' + ProductCategoryID + '" class="select_category children" multiple="multiple"><option value="">Select Category</option></select>');
+                    $(LastSelect).append('<select id="category_' + ProductCategoryID + '" class="select_category children"><option value="">Select Category</option></select>');
 
                     $.each(data,
                     function(key, val) {

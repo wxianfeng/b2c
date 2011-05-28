@@ -3,7 +3,6 @@ class CreateTableProductColors < ActiveRecord::Migration
     create_table :product_colors do |t|
       t.integer :product_id , :limit=>11
       t.integer :color_id , :limit=>11
-      
       t.timestamps
     end
     
