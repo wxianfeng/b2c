@@ -8,4 +8,8 @@ module My
   def display_my_sidebar
     render :partial => "layouts/sidebars/my_sidebar"
   end
+  
+  def display_product_category(category_id)
+    # category = Category.find_by_id(category_id)
+  end
 end

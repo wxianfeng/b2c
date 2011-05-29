@@ -3,16 +3,49 @@
 <%= error_messages_for @product  %>
 <%= semantic_form_for [:my,@product]  do |f| %>
 
-  <%= render :partial => "form", :locals => {:f => f} %>  
+  <%= render :partial => "form", :locals => {:f => f} %>
+    
   <%= f.buttons do %>
-    <%= f.submit %>
-    <%= f.cancel_link %> 
+    <%= f.commit_button t(:create) %>
+    <%= f.cancel_link    %> 
   <% end %>
 
 <% end %>
 
 <script type="text/javascript" charset="utf-8">
  <%- session_key = Rails.application.config.session_options[:key] -%> 
+   
+   function PreviewUploadedImage(ImageData){
+     // find empty thumb
+     var EmptyThumbnail = $('div.empty-thumb')[0];
+     
+     var Image = $(document.createElement("img"))
+         .attr({ src: ImageData.image.path, title: "foolish", id: ImageData.image.image_id })
+      
+      // append image to empty thumb
+      if (! (jQuery.isEmptyObject(EmptyThumbnail)) ) {
+        $(Image).appendTo(EmptyThumbnail);
+        $(EmptyThumbnail).removeClass('empty-thumb');
+      } else {
+        CreateNewEmptyThumbnails();
+        $(Image).appendTo($('div.empty-thumb')[0]);
+        $(EmptyThumbnail).removeClass('empty-thumb');
+      }
+      
+      
+   }
+   
+   function CreateNewEmptyThumbnails(){
+     var EmptyThumbnails    = 3 
+     var ThumbnailTemplate  = '<div class="product-thumb empty-thumb"></div></div>'
+     var PhotoGallery       = $('div.photo-gallery')[0];
+     console.log(PhotoGallery) 
+       $(EmptyThumbnails).each(function(index){
+         console.log("foo");
+         $(ThumbnailTemplate).appendTo(PhotoGallery);
+         // $('div.photo-gallery').append(ThumbTemplate);
+       })
+   }
    $(document).ready(function() {
 
      $('#product_picture').click(function(event){ 
@@ -27,7 +60,12 @@
        script : '/uploads',
        onComplete : function(event, queueID, fileObj, response, data) { 
          var dat = eval('(' + response + ')');
-         $.getScript(dat.upload);},
+         
+         var ImageData = jQuery.parseJSON(''+ response +'')
+         // preview image
+         PreviewUploadedImage(ImageData);
+         $.getScript(dat.upload);
+        },
        scriptData : {
          '_http_accept': 'application/javascript',
          'format' : 'json',

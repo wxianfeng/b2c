@@ -1,42 +1,87 @@
-<%= f.inputs  "Item Details" do %>   
-
-  <div id="select_category" class="select_category1">
-    <%= f.input :parent_category_id, :collection => Category.roots, :as => :select, :input_html => {:class => "select_category"}, :label => "Category" %>
+<div class="product_section">
+  <div class="product_label">
+    <label>Item Category</label>
   </div>
+  <div class="product_details">
+    <div class="category_group">
+      <%= f.collection_select :parent_category_id,  Category.roots, :id, :name, {:include_blank => "Select a Category"}, {:class => "select_category"} %>
+    </div>
+    <% if f.object.category_id.present? %>
+        <%#= display_product_category(f.object.category_id) %>
+    <% end %>
+  </div>
+</div>
 
+<div style="clear:both"></div>
+
+<%= f.inputs  "Item Details" do %>   
+ 
   <%= f.input :name,  :label => "Item Title", :hint => "Title should be less than 60 characters." %>
   <%= f.input :description, :hint => "Provide More information about this item  " %>
-  
+  <%= f.input :condition, :collection => Product::PRODUCT_CONDITION, :label => "Item Condition", :as => :select %>
   <%= f.input :quantity  %>
-  <%= f.input :seller_price, :label => "Set a price for your item" %>
+  <%= f.input :seller_price, :label => "Price" %>
+  <%= f.input :negotiable, :label => "Price negotiable" %>
   <%= f.input :category_id, :as => :hidden %>
   
   <li class="string required">
-    <label>Product Keywords Tags. Separate tags by ,</label>
-    <%= text_field_tag :tags %> (split by ,)
+    <label>Product Keywords Tags.</label>
+    <%= text_field_tag :tags %>
+    <p class="inline-hints">Separate tags by ,</p>
   </li>
   
   <%= f.input :color_ids, :collection => @colors, :as => :check_boxes, :label => "Colors Available" %>
-  
-  <%= f.input :public , :collection => Product::PRODUCT_STATUS, :as => :select,  :label => "Status"  %> 
-     
+       
 <% end %>
 
-<%= f.inputs "Shipping Options" do %>
-   <% ShippingPrice::TOP_SHIPPING_COUNTRIES.each do |country| %>
-    <li class="string shipping">
-      <label><%= country  %></label>
-      $<%= text_field_tag "shipping_price[#{country}]" %>
-      <%= link_to 'remove', '#', :class => "shipping shipping_price#{country}" %>
-    </li>
-   <% end %>
-<% end %>
+<div class="product_section">
+  <div class="product_label">
+    <label>Shipping Options</label>
+  </div>
+  <div class="product_details">
+    
+    <% ShippingPrice::TOP_SHIPPING_COUNTRIES.each_with_index do |country, index| %>
+    
+      <% if f.object.new_record? %>
+        <% shipping_prices = f.object.class.reflect_on_association(:shipping_prices).klass.new %>
+      <% else %>
+        <%= shipping_prices = f.object.shipping_prices %>
+      <% end %>
+    
+       <%=f.fields_for :shipping_prices, shipping_prices, :child_index => index do |s_f| %>
+          <div class="shipping_group">
+            <label><%= country[0]  %></label><br>
+            <%= s_f.hidden_field :country_code, :value => country[1] %>
+            $<%=s_f.text_field   :price %>
+            <%= link_to 'remove', '#', :class => "shipping shipping_price_#{country[1]}" %>
+          </div>
+       <% end %>
+       
+    <% end %>
+  </div>
+</div>
 
 <%= f.inputs "Add photos of your item" do %>
   <li>
     <label class="label">Add photos of your item</label>
     <%= file_field_tag :picture %>
   </li>
-  <div id="uploads"></div>   
+  
+  <div id="uploads" class="product_section">
+    <div class="product_label">
+      Upload Images
+    </div>
+    <div class="product_details photo-gallery" style="width:570px;">
+      <% 3.times do %>
+        <div class="product-thumb empty-thumb">
+          <div class="thumb-links">
+            <div class="info"><%= link_to 'Main Image' %></div>
+            <div class="delete"><%= link_to 'Remove'   %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+     
 
 <% end %>

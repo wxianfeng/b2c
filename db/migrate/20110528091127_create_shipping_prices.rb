@@ -6,7 +6,7 @@ class CreateShippingPrices < ActiveRecord::Migration
       t.decimal    :price, :precision => 10 , :scale => 2
       t.timestamps
     end
-    add_index :shipping_prices, :product_id
+    add_index :shipping_prices, [:product_id, :country_code]
   end
 
   def self.down

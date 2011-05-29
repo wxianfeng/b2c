@@ -1,7 +1,18 @@
+form.formtastic fieldset > ol > li.string input, form.formtastic fieldset > ol > li.password input, form.formtastic fieldset > ol > li.numeric input, form.formtastic fieldset > ol > li.email input, form.formtastic fieldset > ol > li.url input, form.formtastic fieldset > ol > li.phone input, form.formtastic fieldset > ol > li.search input {
+	height: 19px;
+	padding: 4px;
+	border: 1px solid #CCC;
+	vertical-align: middle;
+}
 /*shipping*/
 form.formtastic fieldset.inputs ol li.shipping input {
 	width:70px;
 }
 form.formtastic fieldset > ol > li.shipping label {
 	width:15%;
+}
+form.formtastic legend span {
+	font-size:18px;
+	padding-left:20px;
+	margin-bottom:20px;
 }

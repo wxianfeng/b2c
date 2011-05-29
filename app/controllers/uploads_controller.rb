@@ -1,4 +1,5 @@
 class UploadsController < ApplicationController
+  layout false
   
   def create  
     file = params[:Filedata]
@@ -6,8 +7,8 @@ class UploadsController < ApplicationController
     @upload = Upload::Picture.new(:data => file , :product_id=>params[:product_draft_id])
     if @upload.save
       flash[:notice] = 'upload success'
-      respond_to do |format|
-         format.json {render :json => { :upload => upload_path(@upload) } }
+      respond_to do |f|
+         f.json {render :json => { :image => {:path => @upload.thumb_url, :image_id => @upload.id } } }
       end      
     else
       redirect_to :back

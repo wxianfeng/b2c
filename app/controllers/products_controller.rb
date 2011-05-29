@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
   end
   
   def create
+    # @product = current_user.products.new(params[:product])
     @product = Product.new(params[:product])
     tags = params[:tags].split(/,/).uniq
     tags.each do |tag|
