@@ -20,7 +20,7 @@ gem 'fastercsv', '1.5.4'
 gem 'resque', '1.16.1'
 gem 'resque-status', '0.2.3'
 gem 'countries', '0.5.2'
-gem 'SystemTimer', '1.2.3'
+# gem 'SystemTimer', '1.2.3'
 gem 'ancestry', '1.2.4'
 
 group :test, :development do
